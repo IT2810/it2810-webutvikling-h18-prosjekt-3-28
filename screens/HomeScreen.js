@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
@@ -42,7 +42,7 @@ export default class HomeScreen extends React.Component {
             </View>
 
             <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
+              Change this text and your app will automatically reload. Reload
             </Text>
           </View>
 
@@ -50,6 +50,13 @@ export default class HomeScreen extends React.Component {
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
+          </View>
+
+          <View>
+            <Text>This is some Textt</Text>
+              <Calendar/>
+        
+
           </View>
         </ScrollView>
 
