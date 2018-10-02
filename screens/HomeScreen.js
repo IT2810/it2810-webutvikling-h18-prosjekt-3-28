@@ -54,19 +54,25 @@ export default class HomeScreen extends React.Component {
 
           <View>
             <Text>This is some Textt</Text>
-              <Calendar/>
+              <Calendar 
+              markedDates={{
+    '2018-10-02': {selected: true, marked: true, selectedColor: 'blue'},
+    '2018-10-03': {marked: true},
+    '2018-10-05': {marked: true, dotColor: 'red', activeOpacity: 0},
+    '2018-10-07': {disabled: true, disableTouchEvent: true}
+  }} />
         
 
           </View>
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
+        {/* <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }
