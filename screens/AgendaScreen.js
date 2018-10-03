@@ -46,7 +46,7 @@ export default class AgendaScreen extends Component {
           const numItems = Math.floor(Math.random() * 5);
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
+              name: 'Item for ' + strTime + ', appointment ' + j, //Include name/Description of appointment
               height: Math.max(50, Math.floor(Math.random() * 150))
             });
           }
