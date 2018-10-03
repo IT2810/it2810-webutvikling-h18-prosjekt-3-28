@@ -4,13 +4,48 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-
+import { WebBrowser, Font, LinearGradient } from 'expo';
+import {
+  Avatar,
+  List,
+  ListItem,
+  Icon,
+  CheckBox,
+  Header,
+  Text,
+  Button,
+  ButtonGroup,
+}from 'react-native-elements';
+import {Pedometer} from '../components/Pedometer';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
+import CustomCheckBox from '../components/CustomCheckBox';
+import StepView from '../components/StepView';
+import Tabs from "../components/Tabs";
+
+
+//Had to add this to load font and icons
+Expo.Font.loadAsync({
+  'Material Icons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
+  //'FontAwesome': require("expo/vector-icons/FontAwesome")
+})
+
+
+const list = [
+  {
+    title: 'Appointments',
+    icon: 'av-timer'
+  },
+  {
+    title: 'Trips',
+    icon: 'flight-takeoff'
+  },
+
+
+]
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -19,47 +54,54 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
+
+      
+
       <View style={styles.container}>
+      <LinearGradient
+        colors={['#89f7fe', '#66a6ff']}
+        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+        style={{ }}>
+          <Header 
+          centerComponent={{ text: 'My day', style: { color: '#ffff', fontSize:20,} }}
+          backgroundColor='transparent'
+          />
+      </LinearGradient>
+
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
+          
+        
+
+          <View style = {styles.welcomeContainer}>
+
+            <Avatar 
+            size= 'xlarge'
+            rounded
+            source={{uri: "https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/32970617_1948604848506974_4342619786350428160_o.jpg?_nc_cat=103&oh=dad757a504368cec2ee81b9380325dc3&oe=5C5E2CE4"}}
+            onPress={() => console.log("Works!")}
+            activeOpacity={0.7}
             />
-          </View>
 
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
+            <Text h3>
+              Eirik Lie Morken
             </Text>
-          </View>
+            <Text h4>Finished</Text>
+            <Text h2>5/10</Text>
+            <Text>tasks</Text>
+            <StepView></StepView>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
           </View>
+          <Tabs></Tabs>
+          <CustomCheckBox text="Clean my room"/>
+          <CustomCheckBox text="Math assignment"/>
+          <CustomCheckBox text="Web assignment"/>
+          <CustomCheckBox text="Work"/>
+
+
+          
+
         </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
       </View>
     );
   }
@@ -97,6 +139,12 @@ export default class HomeScreen extends React.Component {
     );
   };
 }
+
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
