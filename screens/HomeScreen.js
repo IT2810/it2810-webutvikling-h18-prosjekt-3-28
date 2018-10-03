@@ -36,21 +36,114 @@ Expo.Font.loadAsync({
 
 const list = [
   {
-    title: 'Appointments',
-    icon: 'av-timer'
+    title: 'Clean my room',
+    checked: false,
   },
   {
-    title: 'Trips',
-    icon: 'flight-takeoff'
+    title: 'Math assignment',
+    checked: false,
   },
-
-
+  {
+    title: 'Web assignment',
+    checked: false,
+  },
+  {
+    title: 'Work',
+    checked: false,
+  }
 ]
 
+const appointments = [
+  {
+    title: 'Meeting',
+    time: '10:10',
+
+  },
+  {
+    title: 'lunch',
+    time: '12:10',
+    
+  },
+  {
+    title: 'Workshop',
+    time: '14:10',
+    
+  },
+  {
+    title: 'Dinner',
+    time: '18:10',
+    
+  },
+  {
+    title: 'Meeting',
+    time: '10:10',
+
+  },
+  {
+    title: 'lunch',
+    time: '12:10',
+    
+  },
+  {
+    title: 'Workshop',
+    time: '14:10',
+    
+  },
+  {
+    title: 'Dinner',
+    time: '18:10',
+    
+  },
+]
+
+
 export default class HomeScreen extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      finished: 0,
+      activeTab: 0,
+    }
+  }
+
   static navigationOptions = {
     header: null,
   };
+
+
+   updateToDo(i) {
+    this.setState({finished: this.state.finished+i})
+  }
+
+  updateActiveTab(index){
+      this.setState({activeTab: index})
+      console.log(this.state.activeTab)
+  }
+
+  getList(activeTab){
+    console.log(activeTab)
+    if(activeTab){
+      return( 
+<View>
+  {
+    appointments.map((item, i) => (
+      <ListItem
+        key={i}
+        title={item.title}
+      />
+    ))
+  }
+</View>
+      )
+    }
+    else{
+      return(
+          list.map((item,i)=>(
+            <CustomCheckBox parent = {this} key={i} text={item.title} checked={item.checked}/>
+          ))
+      )
+    }
+  }
 
   render() {
     return (
@@ -60,8 +153,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
       <LinearGradient
         colors={['#89f7fe', '#66a6ff']}
-        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
-        style={{ }}>
+        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}>
           <Header 
           centerComponent={{ text: 'My day', style: { color: '#ffff', fontSize:20,} }}
           backgroundColor='transparent'
@@ -87,16 +179,15 @@ export default class HomeScreen extends React.Component {
               Eirik Lie Morken
             </Text>
             <Text h4>Finished</Text>
-            <Text h2>5/10</Text>
+            <Text h2>{this.state.finished} / {list.length}</Text>
             <Text>tasks</Text>
             <StepView></StepView>
 
           </View>
-          <Tabs></Tabs>
-          <CustomCheckBox text="Clean my room"/>
-          <CustomCheckBox text="Math assignment"/>
-          <CustomCheckBox text="Web assignment"/>
-          <CustomCheckBox text="Work"/>
+          <Tabs parent = {this}></Tabs>
+          <View>
+            {this.getList(this.state.activeTab)}
+          </View>
 
 
           

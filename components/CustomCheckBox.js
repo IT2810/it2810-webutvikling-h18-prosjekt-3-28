@@ -22,13 +22,14 @@ import{
 class CustomCheckBox extends React.Component{
 
   constructor (props) {
-      super()
+      super(props)
       this.state = {
         text: props.text,
         icon: "work",
 
         checked: false,
         checkIcon: "radio-button-unchecked",
+        parent: props.parent
       }
       
     }
@@ -37,9 +38,11 @@ class CustomCheckBox extends React.Component{
       if(this.state.checked){
         this.setState({checkIcon: "radio-button-unchecked"}),
         this.setState({checked: false})
+        this.props.parent.updateToDo(-1);
       }else{
         this.setState({checkIcon: "check-circle"}),
         this.setState({checked: true})
+        this.props.parent.updateToDo(1);
       }
       this.render()
     }

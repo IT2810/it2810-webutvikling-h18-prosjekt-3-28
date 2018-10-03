@@ -22,16 +22,18 @@ import{
 
 class Tabs extends React.Component{
 
-  constructor () {
+  constructor (props) {
     super()
     this.state = {
-      selectedIndex: 1
+      selectedIndex: 1,
+      parent: props.parent
     }
     this.updateIndex = this.updateIndex.bind(this)
   }
   
   updateIndex (selectedIndex) {
     this.setState({selectedIndex})
+    this.props.parent.updateActiveTab(selectedIndex)
   }
   
   render () {
