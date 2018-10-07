@@ -38,25 +38,29 @@ export default class AgendaScreen extends Component {
 
   loadItems(day) {
     setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      for (let i = -15; i < -14; i++) {
+        const time = day.timestamp; //+ i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
+        //console.log("strTime = " + strTime);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 5);
+          const numItems = 1;//Math.floor(Math.random() * 5);
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
               name: 'Item for ' + strTime + ', appointment ' + j, //Include name/Description of appointment
               height: Math.max(50, Math.floor(Math.random() * 150))
             });
+            //console.log(this.state.items[strTime]);
           }
         }
       }
       //console.log(this.state.items);
       const newItems = {};
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+      console.log(newItems);
       this.setState({
         items: newItems
+        //items: [{'2018-10-10': {name: 'Test appointment', height: 50}}]
       });
     }, 1000);
     // console.log(`Load Items for ${day.year}-${day.month}`);
