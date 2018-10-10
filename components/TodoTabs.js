@@ -9,10 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import {
-  Checkbox, 
   ButtonGroup,
-  Text,
-  Icon
 } from 'react-native-elements';
 
 import{
@@ -20,12 +17,12 @@ import{
 } from 'expo';
 
 
-class Tabs extends React.Component{
+class TodoTabs extends React.Component{
 
   constructor () {
     super()
     this.state = {
-      selectedIndex: 1
+      selectedIndex: 0
     }
     this.updateIndex = this.updateIndex.bind(this)
   }
@@ -43,13 +40,12 @@ class Tabs extends React.Component{
       onPress={this.updateIndex}
       selectedIndex={selectedIndex}
       buttons={buttons}
+      selectedButtonStyle={{backgroundColor:"#0080ff"}}
+      selectedTextStyle={{color:"#ffffff"}}
       containerStyle={{height: 40}}
     />
-
-
     )
   }
-
 } 
 
-export default Tabs
+export default TodoTabs
