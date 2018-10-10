@@ -4,10 +4,9 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import CalendarScreen from '../screens/CalendarScreen';
 import AgendaScreen from '../screens/AgendaScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+//import ToDoScreen from '../screens/ToDoScreen';
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -20,8 +19,8 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'md-home'
       }
     />
   ),
@@ -36,27 +35,29 @@ AgendaStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-calendar${focused ? '' : '-outline'}` : 'md-calendar'}
     />
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
+// const ToDoStack = createStackNavigator({
+//   ToDo: ToDoScreen,
+// });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-    />
-  ),
-};
+// ToDoStack.navigationOptions = {
+//   tabBarLabel: 'ToDo',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === 'ios' ? `ios-add-circle${focused ? '' : '-outline'}` : 'md-add-cirlce'}
+//     />
+//   ),
+// };
 
 export default createBottomTabNavigator({
   AgendaStack,
   HomeStack,
-  SettingsStack,
-});
+}
+  //ToDoStack
+
+  , {initialRouteName: 'HomeStack'});

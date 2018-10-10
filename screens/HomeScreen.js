@@ -211,7 +211,8 @@ export default class HomeScreen extends React.Component {
           </View>
           <Tabs parent = {this}></Tabs>
           <View>
-          <PedometerSensor/>
+          {//<PedometerSensor/>
+          }
             {this.getList(this.state.activeTab)}
           </View>
 
