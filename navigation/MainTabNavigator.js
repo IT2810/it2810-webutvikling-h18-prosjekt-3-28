@@ -5,6 +5,8 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
+import CalendarScreen from '../screens/CalendarScreen';
+import AgendaScreen from '../screens/AgendaScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
@@ -25,12 +27,12 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const AgendaStack = createStackNavigator({
+  Agenda: AgendaScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+AgendaStack.navigationOptions = {
+  tabBarLabel: 'Calendar',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -54,7 +56,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
+  AgendaStack,
   HomeStack,
-  LinksStack,
   SettingsStack,
 });
