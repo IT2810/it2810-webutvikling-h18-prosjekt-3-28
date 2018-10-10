@@ -56,20 +56,16 @@ export default class AgendaScreen extends Component {
               name: 'Item for ' + strTime + ', appointment ' + j, //Include name/Description of appointment
               height: Math.max(50, Math.floor(Math.random() * 150))
             });
-            //console.log(this.state.items[strTime]);
           }
         }
       }
-      //console.log(this.state.items);
-      const newItems = {};
-      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
-      console.log(newItems);
       this.setState({
-        //items: newItems
-        items: {"2018-10-10":[{"height": 113, "name": "Item form sadok"}]}
+        items: {"2018-10-10":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
+                "2018-10-15":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
+                "2018-10-11":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
+                "2018-10-12":[{"height": 113, "name": "Item form sadok"}]}
       });
     }, 1000);
-    // console.log(`Load Items for ${day.year}-${day.month}`);
   }
 
   renderItem(item) {
