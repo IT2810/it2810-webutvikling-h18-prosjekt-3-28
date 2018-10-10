@@ -41,7 +41,6 @@ class StepView extends React.Component{
 
   
   render(){
-    console.log("hei" + this.getWidth())
     return (
       
       <View style={styles.element}>

@@ -25,7 +25,7 @@ class Tabs extends React.Component{
   constructor (props) {
     super()
     this.state = {
-      selectedIndex: 1,
+      selectedIndex: 0,
       parent: props.parent
     }
     this.updateIndex = this.updateIndex.bind(this)

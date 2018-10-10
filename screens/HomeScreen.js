@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser, Font, LinearGradient } from 'expo';
+import { WebBrowser, Font, LinearGradient, Pedometer } from 'expo';
 import {
   Avatar,
   List,
@@ -18,13 +18,16 @@ import {
   Text,
   Button,
   ButtonGroup,
+  
 }from 'react-native-elements';
-import {Pedometer} from '../components/Pedometer';
+import {PedometerSensor} from '../components/Pedometer';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
 import CustomCheckBox from '../components/CustomCheckBox';
+import calenderItem from '../components/CalenderItem';
 import StepView from '../components/StepView';
 import Tabs from "../components/Tabs";
+import CalenderItem from '../components/CalenderItem';
 
 
 //Had to add this to load font and icons
@@ -57,41 +60,43 @@ const appointments = [
   {
     title: 'Meeting',
     time: '10:10',
+    guest: 'Rolv Wesenlund',
 
   },
   {
     title: 'lunch',
     time: '12:10',
+    guest: 'Brad Pitt',
     
   },
   {
     title: 'Workshop',
     time: '14:10',
+    guest: 'Axel Hennie',
     
   },
   {
     title: 'Dinner',
     time: '18:10',
+    guest: 'The Rock',
     
   },
   {
     title: 'Meeting',
     time: '10:10',
+    guest: 'B. Obama',
 
   },
   {
     title: 'lunch',
     time: '12:10',
+    guest: 'Erna Solberg',
     
   },
   {
     title: 'Workshop',
     time: '14:10',
-    
-  },
-  {
-    title: 'Dinner',
-    time: '18:10',
+    guest: 'Per',
     
   },
 ]
@@ -101,45 +106,65 @@ export default class HomeScreen extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      finished: 0,
+      numFinishedTasks: 0,
       activeTab: 0,
+      tasks:[],
+      
     }
+    this.setTasks(list)
   }
 
   static navigationOptions = {
     header: null,
   };
 
+  setTasks(taskList){
+    taskList.map((item)=>(
+      this.state.tasks.push(item)
+    ))
+  }
 
-   updateToDo(i) {
-    this.setState({finished: this.state.finished+i})
+   updateToDo(checked,key) {
+    if(checked){
+      this.setState({numFinishedTasks: this.state.numFinishedTasks+1})
+      this.state.tasks[key%(this.state.tasks.length)].checked = true
+    }
+    else{
+      this.setState({numFinishedTasks: this.state.numFinishedTasks-1})
+      this.state.tasks[key%(this.state.tasks.length)].checked = false
+    }
   }
 
   updateActiveTab(index){
       this.setState({activeTab: index})
-      console.log(this.state.activeTab)
+  }
+
+  getSteps() {
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 1);
+    //return <PedometerSensor></PedometerSensor>
+
   }
 
   getList(activeTab){
-    console.log(activeTab)
     if(activeTab){
       return( 
-<View>
-  {
-    appointments.map((item, i) => (
-      <ListItem
-        key={i}
-        title={item.title}
-      />
-    ))
-  }
-</View>
-      )
-    }
+        <View style={styles.calenderView}>
+          {
+            appointments.map((item, i) => (
+              <CalenderItem key={item.title} text={item.title} time={item.time} location={item.guest}></CalenderItem>
+            ))
+          }
+          </View>
+          )
+        }
     else{
+      
       return(
-          list.map((item,i)=>(
-            <CustomCheckBox parent = {this} key={i} text={item.title} checked={item.checked}/>
+         
+          this.state.tasks.map((item,l)=>(
+            <CustomCheckBox parent = {this} key={l} text={item.title} checked={item.checked}/>
           ))
       )
     }
@@ -149,8 +174,9 @@ export default class HomeScreen extends React.Component {
     return (
 
       
-
+      
       <View style={styles.container}>
+      
       <LinearGradient
         colors={['#89f7fe', '#66a6ff']}
         start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}>
@@ -170,7 +196,6 @@ export default class HomeScreen extends React.Component {
             size= 'xlarge'
             rounded
             source={{uri: "https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/32970617_1948604848506974_4342619786350428160_o.jpg?_nc_cat=103&oh=dad757a504368cec2ee81b9380325dc3&oe=5C5E2CE4"}}
-            onPress={() => console.log("Works!")}
             activeOpacity={0.7}
             />
 
@@ -179,13 +204,14 @@ export default class HomeScreen extends React.Component {
               Eirik Lie Morken
             </Text>
             <Text h4>Finished</Text>
-            <Text h2>{this.state.finished} / {list.length}</Text>
+            <Text h2>{this.state.numFinishedTasks} / {this.state.tasks.length}</Text>
             <Text>tasks</Text>
             <StepView></StepView>
 
           </View>
           <Tabs parent = {this}></Tabs>
           <View>
+          <PedometerSensor/>
             {this.getList(this.state.activeTab)}
           </View>
 
@@ -323,5 +349,9 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
+  },
+  calenderView: {
+    backgroundColor:"#eee",
+    paddingBottom: 20,
   },
 });

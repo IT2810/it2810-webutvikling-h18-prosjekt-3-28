@@ -19,32 +19,44 @@ import{
   LinearGradient,
 } from 'expo';
 
+const i = -1
 class CustomCheckBox extends React.Component{
 
   constructor (props) {
+      i = i+1
       super(props)
+
       this.state = {
         text: props.text,
         icon: "work",
-
-        checked: false,
-        checkIcon: "radio-button-unchecked",
-        parent: props.parent
+        key: i,
+        checked: props.checked,
+        parent: props.parent,
       }
       
+    }
+
+
+    componentDidMount(){
+      
+      if(this.state.checked){
+        this.setState({checkIcon: "check-circle"});
+      }else{
+        this.setState({checkIcon: "radio-button-unchecked"});
+      }
     }
     
     updateChecked () {
       if(this.state.checked){
         this.setState({checkIcon: "radio-button-unchecked"}),
         this.setState({checked: false})
-        this.props.parent.updateToDo(-1);
+        this.props.parent.updateToDo(false,this.state.key);
       }else{
         this.setState({checkIcon: "check-circle"}),
         this.setState({checked: true})
-        this.props.parent.updateToDo(1);
+        this.props.parent.updateToDo(true,this.state.key);
       }
-      this.render()
+
     }
     
     getCheckIcon(){
@@ -53,8 +65,9 @@ class CustomCheckBox extends React.Component{
 
     render () {
       
-    
+
       return (
+        
         <TouchableOpacity style={styles.element} 
           onPress={() => {
           //Alert.alert('You tapped the button!' + this.state.checkIcon);
