@@ -10,6 +10,12 @@ export default class AgendaScreen extends Component {
     };
   }
 
+  getColor(taskType){
+    taskToColor = 
+    {"todo": "#9be7ff", "appointment": "#ff8a65"};
+    return taskToColor[taskType];
+  }
+
   render() {
     return (
       <Agenda
@@ -38,7 +44,7 @@ export default class AgendaScreen extends Component {
 
   loadItems(day) {
     setTimeout(() => {
-      for (let i = -15; i < -14; i++) {
+      for (let i = 0; i < 1; i++) {
         const time = day.timestamp; //+ i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
         //console.log("strTime = " + strTime);
@@ -59,8 +65,8 @@ export default class AgendaScreen extends Component {
       Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
       console.log(newItems);
       this.setState({
-        items: newItems
-        //items: [{'2018-10-10': {name: 'Test appointment', height: 50}}]
+        //items: newItems
+        items: {"2018-10-10":[{"height": 113, "name": "Item form sadok"}]}
       });
     }, 1000);
     // console.log(`Load Items for ${day.year}-${day.month}`);
@@ -68,7 +74,7 @@ export default class AgendaScreen extends Component {
 
   renderItem(item) {
     return (
-      <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
+      <View style={[styles.item, {height: item.height, backgroundColor: this.getColor("appointment")}]}><Text>{item.name}</Text></View>
     );
   }
 
@@ -90,7 +96,7 @@ export default class AgendaScreen extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'white',
+    backgroundColor: 'white', //ToDo: #9be7ff, Appointment: #ff8a65
     flex: 1,
     borderRadius: 5,
     padding: 10,
