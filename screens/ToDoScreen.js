@@ -8,11 +8,14 @@ import {
   Button,
   TextInput
 } from 'react-native';
+
+import Icon from 'react-native-elements';
 import { Dropdown } from 'react-native-material-dropdown';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { WebBrowser } from 'expo';
 
 import TodoTabs from "../components/TodoTabs";
+import IconSelector from '../components/IconSelecter';
 
 
 
@@ -23,7 +26,8 @@ export default class ToDoScreen extends React.Component {
       messageOpacity: 0,  // Opacity of the error message.
       isDateTimePickerVisible: false,
       date: "Choose date", // Holds the string for the date button(and the data being sent for date)
-      errorText: "None" // Holds the validation error message
+      errorText: "None", // Holds the validation error message
+      icon: "work"
     };
   }
   // removes header
@@ -43,16 +47,6 @@ export default class ToDoScreen extends React.Component {
       value: 'Harry',
     }];
 
-    let icons = [{
-      value: 'favorite',
-    }, {
-      value: 'search',
-    }, {
-      value: 'star_rate',
-    }];
-
-
-
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -64,8 +58,8 @@ export default class ToDoScreen extends React.Component {
           </TodoTabs>
 
           <View style={{width: '80%',marginLeft:'10%',}}>
-            <View style={{backgroundColor:"#f5f5f5",marginTop:"5%",marginBottom:"5%",width:"95%",marginLeft:"2.5%"}}><Button style={styles.dateBtn}  color="#555555" onPress={this._showDateTimePicker} title={this.state.date} /></View>
-            <Text style={{marginLeft:10}}>Enter your task here:</Text>
+            
+            <Text style={{marginLeft:10,marginTop:40}}>Enter your task here:</Text>
 
             <TextInput
               style={styles.input}
@@ -74,6 +68,8 @@ export default class ToDoScreen extends React.Component {
               onFocus={this._removeValidationMessage}
               value={this.state.text}
             />
+
+            <View style={{backgroundColor:"#f5f5f5",marginTop:"5%",width:"95%",marginLeft:"2.5%"}}><Button style={styles.dateBtn}  color="#555555" onPress={this._showDateTimePicker} title={this.state.date} /></View>
             
             <View style={{marginBottom:"5%",width:"95%",marginLeft:"2.5%"}}>
 
@@ -84,12 +80,10 @@ export default class ToDoScreen extends React.Component {
               >
               </Dropdown>
 
-              <Dropdown 
-                data={icons} 
-                ref = {dropdown => this.dropdown = dropdown} 
-                label='Choose an icon:'
-              >
-              </Dropdown>
+              <Text style={{marginTop: "5%"}}>Choose a icon:</Text>
+
+              <IconSelector updateIcon= {this.setIcon.bind(this)}></IconSelector>
+
 
             </View>
             
@@ -133,7 +127,15 @@ export default class ToDoScreen extends React.Component {
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
   _handleDatePicked = (date) => {
-    this.setState({date: String(date.getFullYear())+"-"+String(date.getMonth()+1)+"-"+String(date.getDate())})
+    var day = date.getDate()
+    if (day<10){
+      day = "0" + String(day)
+    }
+    var month = date.getMonth()+1
+    if (month<10){
+      month = "0" + String(month)
+    }
+    this.setState({date: String(date.getFullYear())+"-"+month+"-"+day})
     this._hideDateTimePicker();
     this._removeValidationMessage();
   };
@@ -143,6 +145,10 @@ export default class ToDoScreen extends React.Component {
     this.setState({
         messageOpacity : 0
     });
+  }
+
+  setIcon(icon){
+    this.setState({icon: icon});
   }
 
   // 
@@ -157,20 +163,30 @@ export default class ToDoScreen extends React.Component {
     }
 
     var text = this.input.text
-    if(this.state.date === "Choose date"){
-      this.setState({messageOpacity: 1,errorText: "You have to set a date."})
-    }
-    else if (!text){
+    if(!text){
       this.setState({messageOpacity: 1,errorText: "You have to describe your task."})
     }
+    else if (this.state.date === "Choose date"){
+      this.setState({messageOpacity: 1,errorText: "You have to set a date."})
+    }
     else if(this.dropdown.selectedItem() == null){
-      var input = [this.state.date,text,"-"]
-      this._storeData(storageText,input)
+      var input = [this.state.date,text,"-",this.state.icon]
+      dict = this.createDict(this.state.date,text,"-",this.state.icon)
+      //this._storeData(storageText,input)
     }
     else {
-      var input = [this.state.date,text,this.dropdown.selectedItem().value]
-      this._storeData(storageText,input)
+      var input = [this.state.date,text,this.dropdown.selectedItem().value,this.state.icon]
+      dict = this.createDict(this.state.date,text,this.dropdown.selectedItem().value,this.state.icon)
+      //this._storeData(storageText,input)
     }
+  }
+
+
+  createDict(date,text,friend,icon){
+    dict = {}
+    dict[date] = [{"text": text, "friend": friend,"icon": icon}]
+    dict[date].push({"text": text, "friend": friend,"icon": icon})
+    console.log(dict)
   }
 
   // Adding data to an already existing array in AsyncStorage. If array doesnt exist; create the array. Not the best solution, but suitable for this demo.
