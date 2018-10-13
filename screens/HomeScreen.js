@@ -7,22 +7,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser, Font, LinearGradient, Pedometer } from 'expo';
+import { WebBrowser, Font, LinearGradient } from 'expo';
 import {
   Avatar,
   List,
   ListItem,
   Icon,
-  CheckBox,
   Header,
   Text,
   Button,
   ButtonGroup,
   
 }from 'react-native-elements';
-import {PedometerSensor} from '../components/Pedometer';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
+import PedometerSensor from '../components/PedometerSensor';
 import CustomCheckBox from '../components/CustomCheckBox';
 import calenderItem from '../components/CalenderItem';
 import StepView from '../components/StepView';
@@ -31,9 +30,13 @@ import CalenderItem from '../components/CalenderItem';
 
 
 //Had to add this to load font and icons
-Expo.Font.loadAsync({
+Font.loadAsync({
   'Material Icons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
-  //'FontAwesome': require("expo/vector-icons/FontAwesome")
+  'MaterialIcons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
+  'SpaceMono-Regular': require("../assets/fonts/SpaceMono-Regular.ttf"),
+  'OpenSans-Light':require("../assets/fonts/OpenSans-Light.ttf"),
+  'OpenSans-Regular':require("../assets/fonts/OpenSans-Regular.ttf"),
+  'SF-Pro-Display-Bold':require('../assets/fonts/SF-Pro-Display-Bold.otf'),
 })
 
 
@@ -109,10 +112,12 @@ export default class HomeScreen extends React.Component {
       numFinishedTasks: 0,
       activeTab: 0,
       tasks:[],
+      steps: 0,
       
     }
     this.setTasks(list)
   }
+
 
   static navigationOptions = {
     header: null,
@@ -139,12 +144,9 @@ export default class HomeScreen extends React.Component {
       this.setState({activeTab: index})
   }
 
-  getSteps() {
-    const end = new Date();
-    const start = new Date();
-    start.setDate(end.getDate() - 1);
-    //return <PedometerSensor></PedometerSensor>
-
+  updateSteps(result) {
+    this.setState({steps: result})
+    console.log(this.state.steps)
   }
 
   getList(activeTab){
@@ -170,9 +172,23 @@ export default class HomeScreen extends React.Component {
     }
   }
 
+  getTaskView(){
+    if(this.state.numFinishedTasks/this.state.tasks.length == 1){
+      return <View style={styles.welcomeContainer}>
+        <Text fontFamily="SpaceMono-Regular" h4>You are finished!</Text>
+        <Text h1>👏👏👏👏</Text>
+      </View>
+    }else{
+      return <View style={styles.welcomeContainer}>
+        <Text h4>You have finished: </Text>
+        <Text h2>{this.state.numFinishedTasks} / {this.state.tasks.length}</Text>
+        <Text h4> tasks today</Text>
+      </View>
+    }
+  }
+
   render() {
     return (
-
       
       
       <View style={styles.container}>
@@ -200,18 +216,16 @@ export default class HomeScreen extends React.Component {
             />
 
 
-            <Text h3>
+            <Text h3 style={styles.testText}>
               Eirik Lie Morken
             </Text>
-            <Text h4>Finished</Text>
-            <Text h2>{this.state.numFinishedTasks} / {this.state.tasks.length}</Text>
-            <Text>tasks</Text>
-            <StepView></StepView>
-
+            {this.getTaskView()}
+            <PedometerSensor></PedometerSensor>
+        
           </View>
           <Tabs parent = {this}></Tabs>
           <View>
-          <PedometerSensor/>
+
             {this.getList(this.state.activeTab)}
           </View>
 
@@ -267,6 +281,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+
   },
   developmentModeText: {
     marginBottom: 20,
@@ -282,6 +297,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,
+    fontFamily: 'OpenSans-Light',
   },
   welcomeImage: {
     width: 100,
@@ -354,4 +370,7 @@ const styles = StyleSheet.create({
     backgroundColor:"#eee",
     paddingBottom: 20,
   },
+  testText: {
+    fontFamily: 'OpenSans-Light',
+  }
 });
