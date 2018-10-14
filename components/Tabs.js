@@ -45,9 +45,10 @@ class Tabs extends React.Component{
       onPress={this.updateIndex}
       selectedIndex={selectedIndex}
       buttons={buttons}
-      containerStyle={{height: 40}}
+      containerStyle={{height: 40, borderRadius:10, }}
+      selectedButtonStyle={{backgroundColor: "#3a7bd5"}}
     />
-
+    
 
     )
   }

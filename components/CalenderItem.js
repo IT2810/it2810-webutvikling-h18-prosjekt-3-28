@@ -35,10 +35,12 @@ class CalenderItem extends React.Component{
       
     
       return (
-        <View style={styles.item}>
-            <Text style={styles.subtitle}>{this.state.time}</Text>
-            <Text h4>{this.state.text}</Text>
-            <Text style={styles.subtitle}>{this.state.location}</Text>
+        <View style={[styles.item,styles.col]}>
+            <View>
+            <Text style={[styles.subtitle,styles.titleText3,styles.h4]}>{this.state.time}</Text>
+            <Text style={[styles.titleText2,styles.h1]}>{this.state.text}</Text>
+            <Text style={[styles.subtitle,styles.titleText3,styles.h4]}>{this.state.location}</Text>
+            </View>
         </View>
       )
     }
@@ -46,16 +48,45 @@ class CalenderItem extends React.Component{
     const styles = StyleSheet.create({
         item: {
             backgroundColor: 'white',
-            borderRadius: 1,
+            borderRadius: 10,
             padding: 10,
-            marginLeft: 40,
+            marginLeft: 30,
             marginTop: 17,
             width: 350,
         },
         subtitle:{
-            fontSize: 20,
             color: "#40434b",
         },
+        col:{
+          flexDirection: "row",
+        },
+        titleText1: {
+          fontFamily: 'SF-Pro-Display-Bold',
+        },
+        titleText2: {
+          fontFamily: 'SF-Pro-Display-Regular',
+        },
+        titleText3: {
+          fontFamily: 'SF-Pro-Display-Thin',
+        },
+        titleText4: {
+          fontFamily: 'SF-Pro-Display-Ultralight',
+        },
+        tab:{
+          marginTop:30,
+        },
+        h1:{
+          fontSize:35,
+        },
+        h2:{
+          fontSize:30,
+        },
+        h3:{
+          fontSize:25,
+        },
+        h4:{
+          fontSize:20,
+        }
 
     });
 

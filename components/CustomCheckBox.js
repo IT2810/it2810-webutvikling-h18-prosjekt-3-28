@@ -75,9 +75,9 @@ class CustomCheckBox extends React.Component{
         }}
         activeOpacity={0.5}
         >
-          <Icon name={this.state.icon} style={styles.leftIcon}></Icon>
-          <Text style={styles.testText}>{this.state.text}</Text>
-          <Icon name={this.state.checkIcon} color='#00aced' backgroundColor='transparent' style={styles.checkbox}></Icon>
+          <Icon name={this.state.icon} color="#323940" style={styles.leftIcon}></Icon>
+          <Text style={[styles.testText, styles.titleText3]}>{this.state.text}</Text>
+          <Icon name={this.state.checkIcon} color='#3a7bd5' backgroundColor='transparent' style={styles.checkbox}></Icon>
         </TouchableOpacity> 
       )
     }
@@ -86,7 +86,7 @@ class CustomCheckBox extends React.Component{
       element: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent:"center",
+        justifyContent:'center',
         borderRadius: 4,
         borderWidth: 0.3,
         borderColor: '#d6d7da',
@@ -107,6 +107,18 @@ class CustomCheckBox extends React.Component{
       checkbox:{
         flex:1,
         justifyContent:"flex-end",
+      },
+      titleText1: {
+        fontFamily: 'SF-Pro-Display-Bold',
+      },
+      titleText2: {
+        fontFamily: 'SF-Pro-Display-Regular',
+      },
+      titleText3: {
+        fontFamily: 'SF-Pro-Display-Thin',
+      },
+      titleText4: {
+        fontFamily: 'SF-Pro-Display-Ultralight',
       },
 
     });

@@ -7,22 +7,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser, Font, LinearGradient, Pedometer } from 'expo';
+import { WebBrowser, Font, LinearGradient } from 'expo';
 import {
   Avatar,
-  List,
-  ListItem,
-  Icon,
-  CheckBox,
-  Header,
   Text,
-  Button,
-  ButtonGroup,
-  
 }from 'react-native-elements';
-import {PedometerSensor} from '../components/Pedometer';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { MonoText } from '../components/StyledText';
+import PedometerSensor from '../components/PedometerSensor';
 import CustomCheckBox from '../components/CustomCheckBox';
 import calenderItem from '../components/CalenderItem';
 import StepView from '../components/StepView';
@@ -31,9 +23,16 @@ import CalenderItem from '../components/CalenderItem';
 
 
 //Had to add this to load font and icons
-Expo.Font.loadAsync({
+Font.loadAsync({
   'Material Icons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
-  //'FontAwesome': require("expo/vector-icons/FontAwesome")
+  'MaterialIcons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
+  'SpaceMono-Regular': require("../assets/fonts/SpaceMono-Regular.ttf"),
+  'OpenSans-Light':require("../assets/fonts/OpenSans-Light.ttf"),
+  'OpenSans-Regular':require("../assets/fonts/OpenSans-Regular.ttf"),
+  'SF-Pro-Display-Bold':require('../assets/fonts/SF-Pro-Display-Bold.otf'),
+  'SF-Pro-Display-Regular':require('../assets/fonts/SF-Pro-Display-Regular.otf'),
+  'SF-Pro-Display-Thin':require('../assets/fonts/SF-Pro-Display-Thin.otf'),
+  'SF-Pro-Display-Ultralight':require('../assets/fonts/SF-Pro-Display-Ultralight.otf'),
 })
 
 
@@ -109,10 +108,12 @@ export default class HomeScreen extends React.Component {
       numFinishedTasks: 0,
       activeTab: 0,
       tasks:[],
+      steps: 0,
       
     }
     this.setTasks(list)
   }
+
 
   static navigationOptions = {
     header: null,
@@ -139,14 +140,6 @@ export default class HomeScreen extends React.Component {
       this.setState({activeTab: index})
   }
 
-  getSteps() {
-    const end = new Date();
-    const start = new Date();
-    start.setDate(end.getDate() - 1);
-    //return <PedometerSensor></PedometerSensor>
-
-  }
-
   getList(activeTab){
     if(activeTab){
       return( 
@@ -170,96 +163,85 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  render() {
-    return (
-
-      
-      
-      <View style={styles.container}>
-      
-      <LinearGradient
-        colors={['#89f7fe', '#66a6ff']}
-        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}>
-          <Header 
-          centerComponent={{ text: 'My day', style: { color: '#ffff', fontSize:20,} }}
-          backgroundColor='transparent'
-          />
-      </LinearGradient>
-
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          
-        
-
-          <View style = {styles.welcomeContainer}>
-
-            <Avatar 
-            size= 'xlarge'
-            rounded
-            source={{uri: "https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/32970617_1948604848506974_4342619786350428160_o.jpg?_nc_cat=103&oh=dad757a504368cec2ee81b9380325dc3&oe=5C5E2CE4"}}
-            activeOpacity={0.7}
-            />
-
-
-            <Text h3>
-              Eirik Lie Morken
+  getDate(){
+    week = ["Sunday","Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", ]
+    date = new Date()
+    console.log(week[date.getDay()-1], date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear())
+    return <View style={styles.header}>
+            <Text style={[styles.titleText1, styles.headerText, styles.h1]}>
+            {week[date.getDay()]}
             </Text>
-            <Text h4>Finished</Text>
-            <Text h2>{this.state.numFinishedTasks} / {this.state.tasks.length}</Text>
-            <Text>tasks</Text>
-            <StepView></StepView>
-
+            <Text style={[styles.titleText3, styles.headerText, styles.h1]}>
+            {date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear()}
+            </Text>
           </View>
-          <Tabs parent = {this}></Tabs>
-          <View>
-          <PedometerSensor/>
-            {this.getList(this.state.activeTab)}
-          </View>
-
-
-          
-
-        </ScrollView>
-      </View>
-    );
   }
 
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
+  getTaskView(){
+    if(this.state.numFinishedTasks/this.state.tasks.length == 1){
+      return <View style={{alignItems:'center'}}>
+      <LinearGradient
+          style={[styles.taskViewBorder, {alignItems:'center'}]}
+          start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+          colors={['#ff9fa7', '#ffd9a4']
+          }>
+        <View style={[styles.taskView]}>
+        <Text style={[styles.titleText2, {fontSize:50,color: "#ff9fa7"}]}>🎉</Text>
+        </View>
+      </LinearGradient>
+  </View>
+    }else{
+      return <View style={{alignItems:'center'}}>
+          <LinearGradient
+              style={[styles.taskViewBorder, {alignItems:'center'}]}
+              start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+              colors={['#ff9fa7', '#ffd9a4']
+              }>
+            <View style={[styles.taskView]}>
+            <Text style={[styles.titleText3, {fontSize:20,color: "#ff9fa7"}]}>Task count</Text>
+            <Text style={[styles.titleText2, {fontSize:50,color: "#ff9fa7"}]}>{this.state.numFinishedTasks} / {this.state.tasks.length}</Text>
+            </View>
+          </LinearGradient>
+      </View>
     }
   }
 
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+          
+      
+      <View style={styles.container}>
+        <LinearGradient
+        style={styles.headerGradient}
+        colors={['#3a7bd5', '#3a6073']}
+        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}>
+        
+          {this.getDate()}
+          <Avatar
+          style={styles.headerAvatar}
+          size="large"
+          rounded
+          source={{uri: "https://s3.eu-central-1.amazonaws.com/artistarea.gallereplay.com/production/user_9/picture_2405201614728.jpg"}}
+          onPress={() => console.log("Works!")}
+          activeOpacity={0.7}
+        />
+      </LinearGradient>
 
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
+          <View style = {styles.topContainer}>
+            {this.getTaskView()}
+            <PedometerSensor></PedometerSensor>
+          </View>
+
+          <View style={styles.tab}>
+          <Tabs parent = {this} ></Tabs>
+            {this.getList(this.state.activeTab)}
+          </View>
+      </View>
+      </ScrollView>
     );
-  };
+  }
 }
-
-
-
-
 
 
 
@@ -267,6 +249,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  header: {
+    paddingTop:50,
+    paddingBottom: 70,
+    paddingLeft:15,
+    overflow: 'hidden',
+    backgroundColor: 'transparent',
+  },
+  headerAvatar:{
+    marginTop:40,
+    marginBottom: 20,
+    position: 'absolute',
+    right: 60,
+    top: 50,
+  },
+  headerGradient:{
+    borderRadius: 20,
+    overflow:'hidden',
+    flexDirection: 'row',
+    marginBottom: 25,
+  },
+  headerText:{
+    color:'#ffff',
+  },
+  topContainer: {
+    paddingTop: 10,
+    paddingLeft: 15,
+
+  },
+  col:{
+    flexDirection: 'row',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -282,6 +295,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,
+    fontFamily: 'OpenSans-Light',
   },
   welcomeImage: {
     width: 100,
@@ -339,19 +353,55 @@ const styles = StyleSheet.create({
   navigationFilename: {
     marginTop: 5,
   },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
   calenderView: {
-    backgroundColor:"#eee",
+    backgroundColor:'#eee',
     paddingBottom: 20,
   },
+  taskView:{
+    borderRadius:100,
+    height:150,
+    width:150,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    overflow: 'hidden',
+    backgroundColor:"#fff",
+  },
+  taskViewBorder:{
+    borderRadius:100,
+    height:160,
+    width:160,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    overflow: 'hidden',
+  },
+  titleText1: {
+    fontFamily: 'SF-Pro-Display-Bold',
+  },
+  titleText2: {
+    fontFamily: 'SF-Pro-Display-Regular',
+  },
+  titleText3: {
+    fontFamily: 'SF-Pro-Display-Thin',
+  },
+  titleText4: {
+    fontFamily: 'SF-Pro-Display-Ultralight',
+  },
+  tab:{
+    marginTop:30,
+  },
+  h1:{
+    fontSize:35,
+  },
+  h2:{
+    fontSize:30,
+  },
+  h3:{
+    fontSize:25,
+  },
+  h4:{
+    fontSize:20,
+  }
+
 });
