@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
@@ -31,6 +32,8 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
+          
+          <Button title="Hello world!" backgroundColor="#ff4444" />
 
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
@@ -185,4 +188,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+
+  // Button
+  button1:{
+    backgroundColor: 'red',
+  }
 });
