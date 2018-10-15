@@ -2,7 +2,6 @@ import React from 'react';
 import {
   TouchableOpacity,
   StyleSheet,
-  Text
 } from 'react-native';
 import {
   Icon
@@ -41,8 +40,7 @@ class SmartIcon extends React.Component{
 
 const styles = StyleSheet.create({
   icon: {
-    size: 50,
-    height: "5px"
+    height: "5px",
   }
 })
 
