@@ -39,7 +39,7 @@ class CalenderItem extends React.Component{
             <View>
             <Text style={[styles.subtitle,styles.titleText3,styles.h4]}>{this.state.time}</Text>
             <Text style={[styles.titleText2,styles.h1]}>{this.state.text}</Text>
-            <Text style={[styles.subtitle,styles.titleText3,styles.h4]}>{this.state.location}</Text>
+            <Text style={[styles.subtitle,styles.titleText3,styles.h4]}>w/ {this.state.location}</Text>
             </View>
         </View>
       )
@@ -50,15 +50,14 @@ class CalenderItem extends React.Component{
             backgroundColor: 'white',
             borderRadius: 10,
             padding: 10,
-            marginLeft: 30,
             marginTop: 17,
             width: 350,
         },
         subtitle:{
-            color: "#40434b",
+            color: '#40434b',
         },
         col:{
-          flexDirection: "row",
+          flexDirection: 'row',
         },
         titleText1: {
           fontFamily: 'SF-Pro-Display-Bold',

@@ -185,9 +185,7 @@ export default class HomeScreen extends React.Component {
           start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
           colors={['#ff9fa7', '#ffd9a4']
           }>
-        <View style={[styles.taskView]}>
         <Text style={[styles.titleText2, {fontSize:50,color: "#ff9fa7"}]}>🎉</Text>
-        </View>
       </LinearGradient>
   </View>
     }else{
@@ -220,7 +218,7 @@ export default class HomeScreen extends React.Component {
           {this.getDate()}
           <Avatar
           style={styles.headerAvatar}
-          size="large"
+          size='large'
           rounded
           source={{uri: "https://s3.eu-central-1.amazonaws.com/artistarea.gallereplay.com/production/user_9/picture_2405201614728.jpg"}}
           onPress={() => console.log("Works!")}
@@ -275,8 +273,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     paddingTop: 10,
-    paddingLeft: 15,
-
+    
   },
   col:{
     flexDirection: 'row',
@@ -356,6 +353,7 @@ const styles = StyleSheet.create({
   calenderView: {
     backgroundColor:'#eee',
     paddingBottom: 20,
+    alignItems: 'center',
   },
   taskView:{
     borderRadius:100,
@@ -365,7 +363,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     overflow: 'hidden',
-    backgroundColor:"#fff",
+    backgroundColor:'#fff',
   },
   taskViewBorder:{
     borderRadius:100,

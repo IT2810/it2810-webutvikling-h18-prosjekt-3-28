@@ -96,18 +96,20 @@ class PedometerSensor extends React.Component{
       render(){
         return (
           <View style={styles.container}>
-            <Text style={[styles.titleText3, styles.h2]}> Activity <MaterialIcons name="directions-run" size={23}/></Text>
+            <Text style={[styles.titleText3, styles.h2, {textAlign:'center'}]}>Activity <MaterialIcons name="directions-run" size={23}/></Text>
+            <View style={{alignItems:'center'}}>
             <View style={styles.element}>
             
-              <LinearGradient
-                start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
-                colors={['#3a7bd5', '#3a6073']
-              }
-              >
+            <LinearGradient
+              start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+              colors={['#3a7bd5', '#3a6073']
+            }
+            >
 
-              <View style={styles.chart} width={this.getWidth()}></View>
-      
-              </LinearGradient>
+            <View style={styles.chart} width={this.getWidth()}></View>
+    
+            </LinearGradient>
+          </View>
             </View>
             <View style={[styles.col,styles.activityContainer]}>
             <Text style={[styles.titleText3, styles.activityText]}><Foundation name="foot" size={20} color="#3a7bd5"/>  {this.state.pastStepCount}   |</Text>
@@ -129,7 +131,7 @@ class PedometerSensor extends React.Component{
         borderRadius: 10,
         borderWidth: 1,
         borderColor: '#d6d7da',
-        width:390,
+        width:350,
         backgroundColor: 'transparent',
         marginTop:10,
         marginBottom:10,
@@ -143,7 +145,7 @@ class PedometerSensor extends React.Component{
         borderColor: 'transparent',
       },
       col:{
-        flexDirection: "row",
+        flexDirection: 'row',
       },
       activityContainer:{
         textAlign: 'center',
