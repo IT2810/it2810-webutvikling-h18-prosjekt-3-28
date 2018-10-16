@@ -46,7 +46,7 @@ class Tabs extends React.Component{
       selectedIndex={selectedIndex}
       buttons={buttons}
       containerStyle={{height: 40, borderRadius:10, }}
-      selectedButtonStyle={{backgroundColor: "#3a7bd5"}}
+      selectedButtonStyle={{backgroundColor: '#3a7bd5'}}
     />
     
 
