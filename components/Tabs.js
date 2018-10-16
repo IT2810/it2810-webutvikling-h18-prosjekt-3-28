@@ -22,16 +22,18 @@ import{
 
 class Tabs extends React.Component{
 
-  constructor () {
+  constructor (props) {
     super()
     this.state = {
-      selectedIndex: 1
+      selectedIndex: 0,
+      parent: props.parent
     }
     this.updateIndex = this.updateIndex.bind(this)
   }
   
   updateIndex (selectedIndex) {
     this.setState({selectedIndex})
+    this.props.parent.updateActiveTab(selectedIndex)
   }
   
   render () {
@@ -43,9 +45,10 @@ class Tabs extends React.Component{
       onPress={this.updateIndex}
       selectedIndex={selectedIndex}
       buttons={buttons}
-      containerStyle={{height: 40}}
+      containerStyle={{height: 40, borderRadius:10, }}
+      selectedButtonStyle={{backgroundColor: "#3a7bd5"}}
     />
-
+    
 
     )
   }
