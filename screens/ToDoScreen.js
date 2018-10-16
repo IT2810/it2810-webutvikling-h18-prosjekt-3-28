@@ -175,9 +175,7 @@ export default class ToDoScreen extends React.Component {
       //this._storeData(storageText,input)
     }
     else {
-      var input = [this.state.date,text,this.dropdown.selectedItem().value,this.state.icon]
-      dict = this.createDict(this.state.date,text,this.dropdown.selectedItem().value,this.state.icon)
-      //this._storeData(storageText,input)
+      this._storeData(storageText,this.state.date,text,this.dropdown.selectedItem().value,this.state.icon)
     }
   }
 
@@ -190,18 +188,26 @@ export default class ToDoScreen extends React.Component {
   }
 
   // Adding data to an already existing array in AsyncStorage. If array doesnt exist; create the array. Not the best solution, but suitable for this demo.
-  _storeData = async (key,array) => {
+  _storeData = async (key,date,text,friend,icon) => {
     try {
       const value = await AsyncStorage.getItem(key);
       var current = JSON.parse(value)
-      if (Array.isArray(current)) {
-        current.push(array)
-        console.log(current)
+      console.log("Starts here")
+      console.log(current)
+      if (typeof current == "object") {
+        if(!(typeof current[date] == "object")){
+          current[date] = [{"text": text, "friend": friend,"icon": icon}]
+          console.log(typeof current[date])
+        }
+        else{
+          current[date].push({"text": text, "friend": friend,"icon": icon})
+        }
         await AsyncStorage.setItem(key, JSON.stringify(current));
       }
       else{
-        await AsyncStorage.setItem(key, JSON.stringify([]));
-        await AsyncStorage.setItem(key, JSON.stringify(current));
+        var newObj = {}
+        newObj[date] = [{"text": text, "friend": friend,"icon": icon}];
+        await AsyncStorage.setItem(key, JSON.stringify(newObj));
       }
     } catch (error) {
       // Error saving data
