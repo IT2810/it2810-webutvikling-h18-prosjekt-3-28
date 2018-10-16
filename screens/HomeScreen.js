@@ -17,7 +17,6 @@ import { MonoText } from '../components/StyledText';
 import PedometerSensor from '../components/PedometerSensor';
 import CustomCheckBox from '../components/CustomCheckBox';
 import calenderItem from '../components/CalenderItem';
-import StepView from '../components/StepView';
 import Tabs from "../components/Tabs";
 import CalenderItem from '../components/CalenderItem';
 
