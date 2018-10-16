@@ -164,8 +164,8 @@ export default class HomeScreen extends React.Component {
   }
 
   getDate(){
-    week = ["Sunday","Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", ]
-    date = new Date()
+    let week = ["Sunday","Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", ]
+    let date = new Date()
     console.log(week[date.getDay()-1], date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear())
     return <View style={styles.header}>
             <Text style={[styles.titleText1, styles.headerText, styles.h1]}>
