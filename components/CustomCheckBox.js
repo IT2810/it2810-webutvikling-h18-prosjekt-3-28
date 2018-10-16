@@ -19,7 +19,7 @@ import{
   LinearGradient,
 } from 'expo';
 
-const i = -1
+var i = -1
 class CustomCheckBox extends React.Component{
 
   constructor (props) {

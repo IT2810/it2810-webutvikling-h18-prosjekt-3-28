@@ -10,23 +10,39 @@
     "test": "node ./node_modules/.bin/jest --watchAll"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.js?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "!node_modules/react-runtime"
+    ]
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
-    "expo": "^30.0.1",
+    "expo": "30.0.1",
     "jest": "^23.6.0",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-material-dropdown": "^0.11.1",
+    "react-native-modal-datetime-picker": "^6.0.0",
+    "whatwg-fetch": "^2.0.4",
     "react-native-calendars": "^1.21.0",
     "react-native-elements": "^1.0.0-beta5",
     "react-native-linear-gradient": "^2.4.2",
     "react-native-pedometer": "0.0.7",
     "react-native-vector-icons": "^5.0.0",
-    "react-navigation": "^2.16.0",
-    "react-redux": "^5.0.7"
+    "react-navigation": "^2.16.0"
   },
   "devDependencies": {
-    "jest-expo": "30.0.0"
+    "babel-jest": "^23.6.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-native": "^4.0.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^23.6.0",
+    "jest-expo": "30.0.0",
+    "react-test-renderer": "16.5.2"
   }
 }

@@ -5,7 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import AgendaScreen from '../screens/AgendaScreen';
-//import ToDoScreen from '../screens/ToDoScreen';
+import ToDoScreen from '../screens/ToDoScreen';
 
 
 const HomeStack = createStackNavigator({
@@ -26,6 +26,25 @@ HomeStack.navigationOptions = {
   ),
 };
 
+
+const ToDoStack = createStackNavigator({
+  Todos: ToDoScreen,
+});
+
+ToDoStack.navigationOptions = {
+  tabBarLabel: 'TODO',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-add-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
 const AgendaStack = createStackNavigator({
   Agenda: AgendaScreen,
 });
@@ -40,24 +59,10 @@ AgendaStack.navigationOptions = {
   ),
 };
 
-// const ToDoStack = createStackNavigator({
-//   ToDo: ToDoScreen,
-// });
-
-// ToDoStack.navigationOptions = {
-//   tabBarLabel: 'ToDo',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={Platform.OS === 'ios' ? `ios-add-circle${focused ? '' : '-outline'}` : 'md-add-cirlce'}
-//     />
-//   ),
-// };
-
 export default createBottomTabNavigator({
   AgendaStack,
   HomeStack,
+  ToDoStack
 }
-  //ToDoStack
 
   , {initialRouteName: 'HomeStack'});
