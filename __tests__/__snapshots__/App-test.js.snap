@@ -107,7 +107,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                       "bottom": 0,
                       "left": 0,
                       "opacity": 1,
-                      "paddingTop": 64,
+                      "paddingTop": 0,
                       "position": "absolute",
                       "right": 0,
                       "shadowColor": "black",
@@ -148,7 +148,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                       "backgroundColor": "#FFF",
                       "transform": Array [
                         Object {
-                          "translateX": 0,
+                          "translateX": -750,
                         },
                       ],
                     }
@@ -176,58 +176,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                           "flex": 1,
                         }
                       }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "bottom": 0,
-                            "flexDirection": "row",
-                            "left": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                          }
-                        }
-                      >
-                        <View
-                          pointerEvents="box-none"
-                          style={
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "transparent",
-                              "bottom": 0,
-                              "flexDirection": "row",
-                              "justifyContent": "center",
-                              "left": 0,
-                              "opacity": 1,
-                              "position": "absolute",
-                              "right": 0,
-                              "top": 0,
-                            }
-                          }
-                        >
-                          <Text
-                            accessibilityTraits="header"
-                            accessible={false}
-                            allowFontScaling={true}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            onLayout={[Function]}
-                            style={
-                              Object {
-                                "color": "rgba(0, 0, 0, .9)",
-                                "fontSize": 17,
-                                "fontWeight": "600",
-                                "marginHorizontal": 16,
-                                "textAlign": "center",
-                              }
-                            }
-                          >
-                            Links
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
+                    />
                   </View>
                 </View>
               </View>
@@ -254,7 +203,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
       }
     >
       <View
-        accessibilityLabel="Links"
+        accessibilityLabel="Calendar"
         accessible={true}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -300,7 +249,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "minWidth": 25,
-                "opacity": 1,
+                "opacity": 0,
                 "position": "absolute",
                 "width": "100%",
               }
@@ -327,7 +276,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 ]
               }
             >
-              
+              
             </Text>
           </View>
           <View
@@ -338,7 +287,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "minWidth": 25,
-                "opacity": 0,
+                "opacity": 1,
                 "position": "absolute",
                 "width": "100%",
               }
@@ -365,7 +314,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 ]
               }
             >
-              
+              
             </Text>
           </View>
         </View>
@@ -377,14 +326,14 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           style={
             Object {
               "backgroundColor": "transparent",
-              "color": "#3478f6",
+              "color": "#929292",
               "fontSize": 11,
               "marginBottom": 1.5,
               "textAlign": "center",
             }
           }
         >
-          Links
+          Calendar
         </Text>
       </View>
       <View
@@ -434,7 +383,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "minWidth": 25,
-                "opacity": 0,
+                "opacity": 1,
                 "position": "absolute",
                 "width": "100%",
               }
@@ -461,7 +410,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 ]
               }
             >
-              
+              
             </Text>
           </View>
           <View
@@ -472,7 +421,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "minWidth": 25,
-                "opacity": 1,
+                "opacity": 0,
                 "position": "absolute",
                 "width": "100%",
               }
@@ -499,7 +448,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
                 ]
               }
             >
-              
+              
             </Text>
           </View>
         </View>
@@ -511,7 +460,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           style={
             Object {
               "backgroundColor": "transparent",
-              "color": "#929292",
+              "color": "#3478f6",
               "fontSize": 11,
               "marginBottom": 1.5,
               "textAlign": "center",
@@ -519,140 +468,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           }
         >
           Home
-        </Text>
-      </View>
-      <View
-        accessibilityLabel="Settings"
-        accessible={true}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-            },
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "flexDirection": "column",
-              "justifyContent": "flex-end",
-            },
-            undefined,
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "height": 29,
-              },
-              false,
-              Object {
-                "flex": 1,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "alignSelf": "center",
-                "height": "100%",
-                "justifyContent": "center",
-                "minWidth": 25,
-                "opacity": 0,
-                "position": "absolute",
-                "width": "100%",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "color": "#2f95dc",
-                    "fontSize": 26,
-                  },
-                  Object {
-                    "marginBottom": -3,
-                  },
-                  Object {
-                    "fontFamily": "ionicons",
-                    "fontStyle": "normal",
-                    "fontWeight": "normal",
-                  },
-                ]
-              }
-            >
-              
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "alignSelf": "center",
-                "height": "100%",
-                "justifyContent": "center",
-                "minWidth": 25,
-                "opacity": 1,
-                "position": "absolute",
-                "width": "100%",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "color": "#ccc",
-                    "fontSize": 26,
-                  },
-                  Object {
-                    "marginBottom": -3,
-                  },
-                  Object {
-                    "fontFamily": "ionicons",
-                    "fontStyle": "normal",
-                    "fontWeight": "normal",
-                  },
-                ]
-              }
-            >
-              
-            </Text>
-          </View>
-        </View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#929292",
-              "fontSize": 11,
-              "marginBottom": 1.5,
-              "textAlign": "center",
-            }
-          }
-        >
-          Settings
         </Text>
       </View>
       <View

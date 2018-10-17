@@ -19,8 +19,3 @@ describe('App snapshot', () => {
     expect(tree).toMatchSnapshot();
   });
 });
-
-
-it('renders correctly', () => {
-  expect(2).toBeGraterThan(3);
-});

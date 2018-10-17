@@ -8,15 +8,10 @@ import {
   Button,
   TextInput
 } from 'react-native';
-
-import Icon from 'react-native-elements';
 import { Dropdown } from 'react-native-material-dropdown';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import { WebBrowser } from 'expo';
-
 import TodoTabs from "../components/TodoTabs";
 import IconSelector from '../components/IconSelecter';
-
 
 
 export default class ToDoScreen extends React.Component {
@@ -119,6 +114,8 @@ export default class ToDoScreen extends React.Component {
     );
   }
 
+
+
   // Resource:
   // https://www.npmjs.com/package/react-native-modal-datetime-picker
   // Datatime-picker that shows and hides after clicks
@@ -147,11 +144,12 @@ export default class ToDoScreen extends React.Component {
     });
   }
 
+  // saves icon in state
   setIcon(icon){
     this.setState({icon: icon});
   }
 
-  // 
+  // Checks if the input data is valid and prepares data for storage
   _prepareDataForStorage = () =>{
 
     var storageText = "";
@@ -170,9 +168,7 @@ export default class ToDoScreen extends React.Component {
       this.setState({messageOpacity: 1,errorText: "You have to set a date."})
     }
     else if(this.dropdown.selectedItem() == null){
-      var input = [this.state.date,text,"-",this.state.icon]
-      dict = this.createDict(this.state.date,text,"-",this.state.icon)
-      //this._storeData(storageText,input)
+      this._storeData(storageText,this.state.date,text,"-",this.state.icon)
     }
     else {
       this._storeData(storageText,this.state.date,text,this.dropdown.selectedItem().value,this.state.icon)
@@ -180,33 +176,23 @@ export default class ToDoScreen extends React.Component {
   }
 
 
-  createDict(date,text,friend,icon){
-    dict = {}
-    dict[date] = [{"text": text, "friend": friend,"icon": icon}]
-    dict[date].push({"text": text, "friend": friend,"icon": icon})
-    console.log(dict)
-  }
-
   // Adding data to an already existing array in AsyncStorage. If array doesnt exist; create the array. Not the best solution, but suitable for this demo.
   _storeData = async (key,date,text,friend,icon) => {
     try {
       const value = await AsyncStorage.getItem(key);
       var current = JSON.parse(value)
-      console.log("Starts here")
-      console.log(current)
-      if (typeof current == "object") {
+      if (current != null) {
         if(!(typeof current[date] == "object")){
-          current[date] = [{"text": text, "friend": friend,"icon": icon}]
-          console.log(typeof current[date])
+          current[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
         }
         else{
-          current[date].push({"text": text, "friend": friend,"icon": icon})
+          current[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
         }
         await AsyncStorage.setItem(key, JSON.stringify(current));
       }
       else{
         var newObj = {}
-        newObj[date] = [{"text": text, "friend": friend,"icon": icon}];
+        newObj[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}];
         await AsyncStorage.setItem(key, JSON.stringify(newObj));
       }
     } catch (error) {
