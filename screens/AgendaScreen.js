@@ -1,22 +1,56 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 
 export default class AgendaScreen extends Component {
   constructor(props) {
     super(props);
+    this.data = {};
     this.state = {
       items: {}
     };
   }
 
   getColor(taskType){
-    taskToColor = 
+    let taskToColor = 
     {"todo": "#9be7ff", "appointment": "#ff8a65"};
     return taskToColor[taskType];
   }
 
+  _retrieveData2 = async () => {
+    console.log("Trying:")
+    try {
+      const value = await AsyncStorage.getItem('todo');
+      console.log("Value:")
+      console.log(value);
+      var current = JSON.parse(value);
+      console.log("Current:")
+      console.log(current);
+       if(current != null){
+         this.data = Object.assign({}, current);
+        }
+     } catch (error) {
+       // Error retrieving data
+       console.log("An error occured");
+     }
+  }
+
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('todo');
+      if (value !== null) {
+        // We have data!!
+        console.log(value);
+      }
+     } catch (error) {
+       // Error retrieving data
+       console.log("Error message");
+     }
+  }
+
+
   render() {
+    this._retrieveData2();
     return (
       <Agenda
         items={this.state.items}
@@ -44,28 +78,49 @@ export default class AgendaScreen extends Component {
 
   loadItems(day) {
     setTimeout(() => {
-      for (let i = 0; i < 1; i++) {
-        const time = day.timestamp; //+ i * 24 * 60 * 60 * 1000;
+      console.log("This.data");
+      console.log(this.data);
+      for (let i = -15; i < 15; i++) {
+        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = this.timeToString(time);
-        //console.log("strTime = " + strTime);
         if (!this.state.items[strTime]) {
           this.state.items[strTime] = [];
-          const numItems = 1;//Math.floor(Math.random() * 5);
+          const numItems = Math.floor(Math.random() * 5);
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
-              name: 'Item for ' + strTime + ', appointment ' + j, //Include name/Description of appointment
+              name: 'Item for ' + strTime,
               height: Math.max(50, Math.floor(Math.random() * 150))
             });
           }
         }
       }
+      for(let key in this.data){
+          if(!this.state.items[key]){
+            this.state.items[key] = [];
+            for (let appointment in this.data[key]) {
+                this.state.items[key].push({
+                  name: appointment.text + " with: " + appointment.friend,
+                  height: 100
+                });
+              } 
+          }
+          else {
+            for (let appointment in this.data[key]) {
+                this.state.items[key].push({
+                  name: appointment.text + " with: " + appointment.friend,
+                  height: 100
+                });
+              } 
+          }
+      }
+      //console.log(this.state.items);
+      const newItems = {};
+      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
       this.setState({
-        items: {"2018-10-10":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
-                "2018-10-15":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
-                "2018-10-11":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
-                "2018-10-12":[{"height": 113, "name": "Item form sadok"}]}
+        items: newItems
       });
     }, 1000);
+    // console.log(`Load Items for ${day.year}-${day.month}`);
   }
 
   renderItem(item) {
@@ -92,7 +147,7 @@ export default class AgendaScreen extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'white', //ToDo: #9be7ff, Appointment: #ff8a65
+    backgroundColor: 'white',
     flex: 1,
     borderRadius: 5,
     padding: 10,

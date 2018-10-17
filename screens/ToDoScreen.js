@@ -16,6 +16,7 @@ import { WebBrowser } from 'expo';
 
 import TodoTabs from "../components/TodoTabs";
 import IconSelector from '../components/IconSelecter';
+import AgendaScreen from '../screens/AgendaScreen';
 
 
 
@@ -34,6 +35,11 @@ export default class ToDoScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  // updateCalendar(){
+  //   let a = new AgendaScreen;
+  //   a.updateCalendar();
+  // }
 
   render() {
 
@@ -194,7 +200,7 @@ export default class ToDoScreen extends React.Component {
       var current = JSON.parse(value)
       console.log("Starts here")
       console.log(current)
-      if (typeof current == "object") {
+      if (current != null) {
         if(!(typeof current[date] == "object")){
           current[date] = [{"text": text, "friend": friend,"icon": icon}]
           console.log(typeof current[date])
@@ -213,6 +219,7 @@ export default class ToDoScreen extends React.Component {
       // Error saving data
       this.setState({errorText: error.toString()})
     }
+    //this.updateCalendar();
   }
 }
 
