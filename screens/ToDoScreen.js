@@ -12,6 +12,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import TodoTabs from "../components/TodoTabs";
 import IconSelector from '../components/IconSelecter';
+import AgendaScreen from '../screens/AgendaScreen';
 
 
 export default class ToDoScreen extends React.Component {
@@ -199,6 +200,7 @@ export default class ToDoScreen extends React.Component {
       // Error saving data
       this.setState({errorText: error.toString()})
     }
+    //this.updateCalendar();
   }
 }
 

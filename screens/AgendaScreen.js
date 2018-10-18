@@ -1,82 +1,120 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 
+
+// This Screen/Class is based upon an example from https://github.com/expo/examples/blob/master/with-react-native-calendars/screens/agenda.js
+// It generates some random appointments to fill up some of the days in the Agenda
+// Functionality have been added to allow for "importing" ToDos from the AsyncStorage and show them inside the Agenda
 export default class AgendaScreen extends Component {
   constructor(props) {
     super(props);
+    this.data = {};
     this.state = {
       items: {}
     };
   }
 
+  // Returns a color for the background of either an Appointment or ToDo
   getColor(taskType){
-    taskToColor = 
+    let taskToColor = 
     {"todo": "#9be7ff", "appointment": "#ff8a65"};
     return taskToColor[taskType];
   }
 
+  // Basic AsyncStorage-fetch, based upon example from https://facebook.github.io/react-native/docs/asyncstorage
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('todo');
+      var current = JSON.parse(value);
+      if(current != null){
+         this.data = Object.assign({}, current);
+        }
+    } catch (error) {
+        console.log("An error occured");
+    }
+  }
+
+  // After the data is fetched from AsyncStorage, this function loops through and adds any new ToDos to the Agenda
+  importToCalendar(){
+    for(let key in this.data){
+      if(!this.state.items[key]){
+        this.state.items[key] = [];
+      }
+      for(let i = 0; i < this.data[key].length; i++){
+        let appointment = this.data[key][i];
+        let alreadyExists = false;
+        for(let j = 0; j < this.state.items[key].length; j++){
+            let existing = this.state.items[key][j]
+            let appointmentText = appointment["text"] + " with: " + appointment["friend"];
+            if(appointmentText == existing["name"]){
+                alreadyExists = true;
+                break;
+            }
+        }
+        if(!alreadyExists){
+            this.state.items[key].push({
+              name: appointment["text"] + " with: " + appointment["friend"],
+              height: 50, type: "todo"
+            });
+        }
+      } 
+    }
+  }
+
+  // Function based upon the example which creates some random appointments to fill up the Agenda
+  generateRandomAppointments(day){
+    for (let i = -15; i < 15; i++) {
+      const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+      const strTime = this.timeToString(time);
+      if (!this.state.items[strTime]) {
+        this.state.items[strTime] = [];
+        const numItems = Math.floor(Math.random() * 2);
+        for (let j = 0; j < numItems; j++) {
+          this.state.items[strTime].push({
+            name: 'Randomly generated appointment for ' + strTime,
+            height: Math.max(50, Math.floor(Math.random() * 100)),
+            type: "appointment"
+            });
+          }
+        }
+    }
+  }
+
   render() {
+    this._retrieveData();
     return (
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        //selected={'2017-05-16'}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
-        //markingType={'interactive'}
-        //markedDates={{
-        //  '2017-05-08': [{textColor: '#666'}],
-        //  '2017-05-09': [{textColor: '#666'}],
-        //  '2017-05-14': [{startingDay: true, color: 'blue'}, {endingDay: true, color: 'blue'}],
-        //  '2017-05-21': [{startingDay: true, color: 'blue'}],
-        //  '2017-05-22': [{endingDay: true, color: 'gray'}],
-        //  '2017-05-24': [{startingDay: true, color: 'gray'}],
-        //  '2017-05-25': [{color: 'gray'}],
-        //  '2017-05-26': [{endingDay: true, color: 'gray'}]}}
-        // monthFormat={'yyyy'}
-        // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-        //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
       />
     );
   }
 
   loadItems(day) {
     setTimeout(() => {
-      for (let i = 0; i < 1; i++) {
-        const time = day.timestamp; //+ i * 24 * 60 * 60 * 1000;
-        const strTime = this.timeToString(time);
-        //console.log("strTime = " + strTime);
-        if (!this.state.items[strTime]) {
-          this.state.items[strTime] = [];
-          const numItems = 1;//Math.floor(Math.random() * 5);
-          for (let j = 0; j < numItems; j++) {
-            this.state.items[strTime].push({
-              name: 'Item for ' + strTime + ', appointment ' + j, //Include name/Description of appointment
-              height: Math.max(50, Math.floor(Math.random() * 150))
-            });
-          }
-        }
-      }
+      this.generateRandomAppointments(day);
+      this.importToCalendar();
+      const newItems = {};
+      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
       this.setState({
-        items: {"2018-10-10":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
-                "2018-10-15":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
-                "2018-10-11":[{"height": 113, "name": "Item form sadok"},{"height": 50, "name": "dkfkdsf"}], 
-                "2018-10-12":[{"height": 113, "name": "Item form sadok"}]}
+        items: newItems
       });
     }, 1000);
   }
 
   renderItem(item) {
     return (
-      <View style={[styles.item, {height: item.height, backgroundColor: this.getColor("appointment")}]}><Text>{item.name}</Text></View>
+      <View style={[styles.item, {height: item.height, backgroundColor: this.getColor(item.type)}]}><Text>{item.name}</Text></View>
     );
   }
 
   renderEmptyDate() {
     return (
-      <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
+      <View style={styles.emptyDate}><Text>This is an empty date!</Text></View>
     );
   }
 
@@ -92,7 +130,7 @@ export default class AgendaScreen extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'white', //ToDo: #9be7ff, Appointment: #ff8a65
+    backgroundColor: 'white',
     flex: 1,
     borderRadius: 5,
     padding: 10,
