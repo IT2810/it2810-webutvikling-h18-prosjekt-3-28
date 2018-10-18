@@ -20,8 +20,13 @@ describe('App snapshot', () => {
     });
 });
 
-describe('Test render', ()=>{
-  const testRenderer = renderer.create(
-      <SmartIcon string="work" index={1}></SmartIcon>
-    );
+describe('Test state', () =>{
+  let smartIcon = renderer
+  .create(
+    <SmartIcon
+    index={2}
+    />
+  )
+  .getInstance();
+  expect(smartIcon.state.index).toBe(2)
 })

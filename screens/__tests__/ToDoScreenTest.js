@@ -3,6 +3,7 @@ import ToDoScreen from '../ToDoScreen.js';
 import renderer from 'react-test-renderer';
 import NavigationTestUtils from 'react-navigation/NavigationTestUtils';
 
+
 describe('App snapshot', () => {
   jest.useFakeTimers();
   beforeEach(() => {
@@ -22,31 +23,34 @@ describe('App snapshot', () => {
 
 
 describe('Test methods', () =>{
-    let toDoScreen = renderer
-    .create(
-      <ToDoScreen
-      />
-    )
-    .getInstance();
+  let toDoScreen = renderer
+  .create(
+    <ToDoScreen
+    />
+  )
+  .getInstance();
 
-    // on icon change
-    expect(toDoScreen.state.icon).toBe("work");
-    toDoScreen.setIcon("home");
-    expect(toDoScreen.state.icon).toBe("home");
+  toDoScreen._storeData("todo","2018-11-11","My todo", "Sam", "work")
 
-    // remove validation message
-    toDoScreen.setState({messageOpacity : 1});
-    expect(toDoScreen.state.messageOpacity).toBe(1);
-    toDoScreen._removeValidationMessage();
-    expect(toDoScreen.state.messageOpacity).toBe(0);
+  // on icon change
+  expect(toDoScreen.state.icon).toBe("work");
+  toDoScreen.setIcon("home");
+  expect(toDoScreen.state.icon).toBe("home");
 
-    // store date (the reachable part)
-    toDoScreen._storeData("todo","2018-11-11","My task", "Sam", "work");
+  // remove validation message
+  toDoScreen.setState({messageOpacity : 1});
+  expect(toDoScreen.state.messageOpacity).toBe(1);
+  toDoScreen._removeValidationMessage();
+  expect(toDoScreen.state.messageOpacity).toBe(0);
+
+  // store date (the reachable part)
+  toDoScreen._storeData("todo","2018-11-11","My task", "Sam", "work");
 
 
-    // _handleDatePicked
-    toDoScreen._showDateTimePicker();
-    expect(toDoScreen.state.isDateTimePickerVisible).toBe(true);
-    toDoScreen._handleDatePicked(new Date());
-    expect(toDoScreen.state.isDateTimePickerVisible).toBe(false);
+  // _handleDatePicked
+  toDoScreen._showDateTimePicker();
+  expect(toDoScreen.state.isDateTimePickerVisible).toBe(true);
+  toDoScreen._handleDatePicked(new Date());
+  expect(toDoScreen.state.isDateTimePickerVisible).toBe(false);
 })
+

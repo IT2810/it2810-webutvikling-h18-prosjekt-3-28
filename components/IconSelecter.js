@@ -36,7 +36,9 @@ class IconSelector extends React.Component{
       this.state.backgroundcolors[this.state.selectedIndex] = "#ffffff"
       this.state.backgroundcolors[newIndex] = "#f5f5f5"
       this.updateIndex(newIndex)
-      this.props.updateIcon(this.state.strings[newIndex])
+      if (this.props.updateIcon != undefined){
+        this.props.updateIcon(this.state.strings[newIndex])
+      }
     }
   }
   

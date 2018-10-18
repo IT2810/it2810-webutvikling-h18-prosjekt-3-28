@@ -20,3 +20,16 @@ describe('App snapshot', () => {
     });
 });
 
+
+describe('Test functions', () =>{
+  let iconSelecter = renderer
+  .create(
+    <IconSelecter
+    />
+  )
+  .getInstance();
+
+  iconSelecter.changeBG(2);
+  expect(iconSelecter.state.selectedIndex).toBe(2);
+})
+
