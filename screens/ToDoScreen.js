@@ -5,9 +5,11 @@ import {
   Text,
   View,
   AsyncStorage,
-  Button,
-  TextInput
+  TextInput, 
+  Alert
 } from 'react-native';
+import { Button } from 'react-native-elements'
+import LinearGradient from 'expo';
 import { Dropdown } from 'react-native-material-dropdown';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import TodoTabs from "../components/TodoTabs";
@@ -45,29 +47,41 @@ export default class ToDoScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <ScrollView>
 
           <TodoTabs 
-            style = {{marginTop:"20%"}} 
             ref={tabs => this.tabs = tabs}
           >
           </TodoTabs>
 
-          <View style={{width: '80%',marginLeft:'10%',}}>
+          <View style={{width: 300, alignContent:"center"}}>
             
-            <Text style={{marginLeft:10,marginTop:40}}>Enter your task here:</Text>
+            <Text style={[styles.titleText3, styles.h3]}>Enter your task here:</Text>
 
             <TextInput
-              style={styles.input}
+              style={[styles.input, styles.titleText3]}
               ref={input => this.input = input}
               onChangeText={(text) => this.input.text = text}
               onFocus={this._removeValidationMessage}
               value={this.state.text}
             />
 
-            <View style={{backgroundColor:"#f5f5f5",marginTop:"5%",width:"95%",marginLeft:"2.5%"}}><Button style={styles.dateBtn}  color="#555555" onPress={this._showDateTimePicker} title={this.state.date} /></View>
+            <Button
+              title={this.state.date}
+              onPress={this._showDateTimePicker} 
+              ViewComponent={require('expo').LinearGradient}
+              buttonStyle={{
+                marginTop:20,
+              }}
+              linearGradientProps={{
+              start:[0, 0.25],
+              end:[0.5,1.0],
+              colors:['#3a7bd5', '#3a6073',]
+              }}
+            > 
+            </Button>
             
-            <View style={{marginBottom:"5%",width:"95%",marginLeft:"2.5%"}}>
+            <View style={{marginTop:20}}>
 
               <Dropdown 
                 data={data} 
@@ -76,7 +90,7 @@ export default class ToDoScreen extends React.Component {
               >
               </Dropdown>
 
-              <Text style={{marginTop: "5%"}}>Choose a icon:</Text>
+              <Text style={[styles.titleText3, styles.h3, {marginTop:50}]}>Choose an icon:</Text>
 
               <IconSelector updateIcon= {this.setIcon.bind(this)}></IconSelector>
 
@@ -90,25 +104,42 @@ export default class ToDoScreen extends React.Component {
             />
 
           </View>
-            
-        </ScrollView>
 
-        <View style={{opacity: this.state.messageOpacity}}>
+                  <View style={{opacity: this.state.messageOpacity}}>
 
-          <Text style={styles.errorMessage}>
-            {this.state.errorText}
-          </Text>
+<Text style={styles.errorMessage}>
+  {this.state.errorText}
+</Text>
 
-        </View>
-        <View style={styles.containerBottom}>
+</View>
+  <View style={{alignItems:'center', justifyContent:'center', paddingBottom:30}}>
+    <Button
+        title="Add to my list" 
+        onPress={() => {
+          this._prepareDataForStorage()
+          Alert.alert("Since this is a working protype, you'll have to refresh the app to show the new todo. Sorry for this 😥")
+      }}
+        ViewComponent={require('expo').LinearGradient}
+        
+        buttonStyle={{
+          padding:5,
+          borderRadius:100,
+          width:200,
+          
 
-              <Button 
-                color="#ffffff" 
-                onPress={this._prepareDataForStorage} 
-                title="Add to my list" 
-              />
 
-        </View>
+        }}
+        linearGradientProps={{
+          start:[ 0.0, 0.25],
+          end:[ 0.5,1.0],
+          colors:['#ff9fa7', '#ffd9a4']
+        }}
+
+      />
+  </View>  
+</ScrollView>
+
+
 
 
       </View>
@@ -169,7 +200,7 @@ export default class ToDoScreen extends React.Component {
       this.setState({messageOpacity: 1,errorText: "You have to set a date."})
     }
     else if(this.dropdown.selectedItem() == null){
-      this._storeData(storageKey,this.state.date,text,"-",this.state.icon)
+      this._storeData(storageText,this.state.date,text,"-",this.state.icon)
     }
     else {
       this._storeData(storageKey,this.state.date,text,this.dropdown.selectedItem().value,this.state.icon)
@@ -181,13 +212,13 @@ export default class ToDoScreen extends React.Component {
   _storeData = async (key,date,text,friend,icon) => {
     try {
       const value = await AsyncStorage.getItem(key);
-      var currentData = JSON.parse(value)
-      if (currentData != null) {
-        if(!(typeof currentData[date] == "object")){
-          currentData[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
+      var current = JSON.parse(value)
+      if (current != null) {
+        if(!(typeof current[date] == "object")){
+          current[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
         }
         else{
-          currentData[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
+          current[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
         }
         await AsyncStorage.setItem(key, JSON.stringify(currentData));
       }
@@ -198,7 +229,8 @@ export default class ToDoScreen extends React.Component {
       }
     } catch (error) {
       // Error saving data
-      this.setState({errorText: error.toString(),messageOpacity: 1})
+      console.log(error.toString())
+      this.setState({errorText: error.toString()})
     }
     //this.updateCalendar();
   }
@@ -240,6 +272,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop:50,
   },
   centerContent: {
     width:'80%',
@@ -254,5 +289,34 @@ const styles = StyleSheet.create({
   },
   test: {
     opacity:0,
+  },
+  titleText1: {
+    fontFamily: 'SF-Pro-Display-Bold',
+  },
+  titleText2: {
+    fontFamily: 'SF-Pro-Display-Regular',
+    textAlign: 'center',
+  },
+  titleText3: {
+    fontFamily: 'SF-Pro-Display-Thin',
+    textAlign: 'center',
+  },
+  titleText4: {
+    fontFamily: 'SF-Pro-Display-Ultralight',
+  },
+  tab:{
+    marginTop:30,
+  },
+  h1:{
+    fontSize:35,
+  },
+  h2:{
+    fontSize:30,
+  },
+  h3:{
+    fontSize:25,
+  },
+  h4:{
+    fontSize:20,
   }
 });

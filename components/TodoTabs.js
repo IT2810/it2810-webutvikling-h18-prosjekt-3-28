@@ -32,7 +32,7 @@ class TodoTabs extends React.Component{
   }
   
   render () {
-    const buttons = ['ToDos', 'Appointments',]
+    const buttons = ['ToDo', 'Appointment',]
     const { selectedIndex } = this.state
   
     return (    
@@ -40,9 +40,8 @@ class TodoTabs extends React.Component{
       onPress={this.updateIndex}
       selectedIndex={selectedIndex}
       buttons={buttons}
-      selectedButtonStyle={{backgroundColor:"#0080ff"}}
-      selectedTextStyle={{color:"#ffffff"}}
-      containerStyle={{height: 40}}
+      containerStyle={{height: 40, borderRadius:10, marginBottom:50 }}
+      selectedButtonStyle={{backgroundColor: '#3a7bd5'}}
     />
     )
   }

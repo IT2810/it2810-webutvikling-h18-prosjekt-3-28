@@ -28,7 +28,7 @@ class CustomCheckBox extends React.Component{
 
       this.state = {
         text: props.text,
-        icon: "work",
+        icon: props.icon,
         key: i,
         checked: props.checked,
         parent: props.parent,
