@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
-import { Agenda } from 'react-native-calendars';
+import { Agenda, DateObject } from 'react-native-calendars';
 
 
 // This Screen/Class is based upon an example from https://github.com/expo/examples/blob/master/with-react-native-calendars/screens/agenda.js
@@ -87,6 +87,8 @@ export default class AgendaScreen extends Component {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
+        onDayChange={this.loadItems.bind(this)}
+        onDayPress={this.loadItems.bind(this)}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}

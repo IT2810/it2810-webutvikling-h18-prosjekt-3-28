@@ -153,7 +153,7 @@ export default class ToDoScreen extends React.Component {
   // Checks if the input data is valid and prepares data for storage
   _prepareDataForStorage = () =>{
 
-    var storageText = "";
+    var storageKey = "";
     if (this.tabs.state.selectedIndex === 0){
       storageKey = "todo"
     }
@@ -183,13 +183,13 @@ export default class ToDoScreen extends React.Component {
       const value = await AsyncStorage.getItem(key);
       var currentData = JSON.parse(value)
       if (currentData != null) {
-        if(!(typeof current[date] == "object")){
+        if(!(typeof currentData[date] == "object")){
           currentData[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
         }
         else{
           currentData[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
         }
-        await AsyncStorage.setItem(key, JSON.stringify(current));
+        await AsyncStorage.setItem(key, JSON.stringify(currentData));
       }
       else{
         var newObj = {}
@@ -198,7 +198,7 @@ export default class ToDoScreen extends React.Component {
       }
     } catch (error) {
       // Error saving data
-      this.setState({errorText: error.toString()})
+      this.setState({errorText: error.toString(),messageOpacity: 1})
     }
     //this.updateCalendar();
   }
