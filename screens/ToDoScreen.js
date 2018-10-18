@@ -36,11 +36,6 @@ export default class ToDoScreen extends React.Component {
     header: null,
   };
 
-  // updateCalendar(){
-  //   let a = new AgendaScreen;
-  //   a.updateCalendar();
-  // }
-
   render() {
 
 
