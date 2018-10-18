@@ -155,10 +155,10 @@ export default class ToDoScreen extends React.Component {
 
     var storageText = "";
     if (this.tabs.state.selectedIndex === 0){
-      storageText = "todo"
+      storageKey = "todo"
     }
     else{
-      storageText = "appointment"
+      storageKey = "appointment"
     }
 
     var text = this.input.text
@@ -169,10 +169,10 @@ export default class ToDoScreen extends React.Component {
       this.setState({messageOpacity: 1,errorText: "You have to set a date."})
     }
     else if(this.dropdown.selectedItem() == null){
-      this._storeData(storageText,this.state.date,text,"-",this.state.icon)
+      this._storeData(storageKey,this.state.date,text,"-",this.state.icon)
     }
     else {
-      this._storeData(storageText,this.state.date,text,this.dropdown.selectedItem().value,this.state.icon)
+      this._storeData(storageKey,this.state.date,text,this.dropdown.selectedItem().value,this.state.icon)
     }
   }
 
@@ -181,13 +181,13 @@ export default class ToDoScreen extends React.Component {
   _storeData = async (key,date,text,friend,icon) => {
     try {
       const value = await AsyncStorage.getItem(key);
-      var current = JSON.parse(value)
-      if (current != null) {
+      var currentData = JSON.parse(value)
+      if (currentData != null) {
         if(!(typeof current[date] == "object")){
-          current[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
+          currentData[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
         }
         else{
-          current[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
+          currentData[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
         }
         await AsyncStorage.setItem(key, JSON.stringify(current));
       }
