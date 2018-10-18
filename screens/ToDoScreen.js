@@ -14,7 +14,6 @@ import { Dropdown } from 'react-native-material-dropdown';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import TodoTabs from "../components/TodoTabs";
 import IconSelector from '../components/IconSelecter';
-import AgendaScreen from '../screens/AgendaScreen';
 
 
 export default class ToDoScreen extends React.Component {
@@ -155,6 +154,7 @@ export default class ToDoScreen extends React.Component {
  
   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
+  // saves date in state(yyyy-mm-dd), hides DayTimePicker and removes the error message(if there is one)
   _handleDatePicked = (date) => {
     var day = date.getDate()
     if (day<10){
@@ -169,7 +169,7 @@ export default class ToDoScreen extends React.Component {
     this._removeValidationMessage();
   };
 
-  
+  // Removes error message
   _removeValidationMessage = () =>{
     this.setState({
         messageOpacity : 0
@@ -232,7 +232,6 @@ export default class ToDoScreen extends React.Component {
       console.log(error.toString())
       this.setState({errorText: error.toString()})
     }
-    //this.updateCalendar();
   }
 }
 
