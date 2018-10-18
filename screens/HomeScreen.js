@@ -88,15 +88,15 @@ export default class HomeScreen extends React.Component {
     this.state = {
       numFinishedTasks: 0,
       activeTab: 0,
-      tasks:[],
+      tasks: [],
       steps: 0,
     }
 
   }
 
-//  async componentWillMount(){
-//   console.log("WILLMOUNT()")
-//   await this.init()
+async componentWillMount(){
+  let value = this.setTasks()
+}
 
 
 //   console.log("FINNISHED WILLMOUNT")
@@ -116,10 +116,14 @@ export default class HomeScreen extends React.Component {
     if(checked){
       this.setState({numFinishedTasks: this.state.numFinishedTasks+1})
       this.state.tasks[key%(this.state.tasks.length)].checked = true
+      this._storeData()
     }
     else{
       this.setState({numFinishedTasks: this.state.numFinishedTasks-1})
       this.state.tasks[key%(this.state.tasks.length)].checked = false
+      this._storeData()
+
+      
     }
   }
 
@@ -196,29 +200,29 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  setTasks = async () => {
-    let date  = new Date()
-    console.log("SETSTASKS")
-    let value = await this.test()
-    this.setState({tasks: value})
-   console.log("FINNISHED SETTASKS, RESULT: ",this.state.tasks[0])
-  }
 
-  getFromAsync(){
-    return this._retrieveData()
-  }
 
-  test(){
+   async setTasks(){
     let date  = new Date()
-    var value = this._retrieveData()
-    console.log(value[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]]) 
-    return value
+    var value = await this._retrieveData()
+    value = value[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]]
+    console.log("TEST", value)
+    this.setState({tasks:value})
+    let counter = 0 
+    value.forEach(element => {
+      if(element.checked == true){
+        counter ++
+        console.log(counter)
+      }
+    });
+    this.setState({numFinishedTasks: counter})
+
+    return value[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]]
   }
 
 
   _retrieveData = async () => {
     console.log("RETRIVEDATA")
-
     try {
       console.log("RETRIVEDATA - B4 TRY")
       var value = await AsyncStorage.getItem('todo');
@@ -239,9 +243,14 @@ export default class HomeScreen extends React.Component {
     console.log("_storeData")
     try {
       console.log("try")
-      todo = getTODO()
-      todo[today] = this.state.tasks
-      await AsyncStorage.setItem('todo', todo);
+      let date = new Date()
+      let saved = await this._retrieveData()
+      console.log(saved)
+
+      saved[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]] = this.state.tasks
+      console.log(saved)
+
+      await AsyncStorage.setItem('todo', JSON.stringify(saved));
       console.log("sucsess")
     } catch (error) {
       console.log(error.toString())
@@ -250,14 +259,8 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-    this.test()
-    this.setTasks()
     return (
       <ScrollView style={styles.container}>
-
-
-      
-      
       <View style={styles.container}>
         <LinearGradient
         style={styles.headerGradient}

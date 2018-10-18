@@ -32,7 +32,7 @@ class SmartIcon extends React.Component{
   render () {
     return (
         <TouchableOpacity onPress={() =>this.props.onPress(this.state.index)} activeOpacity={0.5} style={{width: "25%", padding: "2%", borderRadius: 5, backgroundColor: this.props.backgroundColor}}>
-          <Icon name={this.state.string}  color='#00aced' backgroundColor='transparent' size={50} style={styles.icon}></Icon>          
+          <Icon name={this.state.string}  color='#323940' backgroundColor='transparent' size={50} style={styles.icon}></Icon>          
         </TouchableOpacity>
     )
   }
