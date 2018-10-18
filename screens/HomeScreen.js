@@ -360,7 +360,6 @@ const styles = StyleSheet.create({
     width:150,
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
     overflow: 'hidden',
     backgroundColor:'#fff',
   },
@@ -370,7 +369,6 @@ const styles = StyleSheet.create({
     width:160,
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
     overflow: 'hidden',
   },
   titleText1: {
@@ -378,9 +376,11 @@ const styles = StyleSheet.create({
   },
   titleText2: {
     fontFamily: 'SF-Pro-Display-Regular',
+    textAlign: 'center',
   },
   titleText3: {
     fontFamily: 'SF-Pro-Display-Thin',
+    textAlign: 'center',
   },
   titleText4: {
     fontFamily: 'SF-Pro-Display-Ultralight',
