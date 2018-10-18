@@ -20,7 +20,6 @@ exports[`App snapshot renders the loading screen 1`] = `
       Object {
         "borderRadius": 10,
         "height": 40,
-        "marginBottom": 50,
       },
     ]
   }
@@ -94,7 +93,7 @@ exports[`App snapshot renders the loading screen 1`] = `
           ]
         }
       >
-        ToDo
+        ToDos
       </Text>
     </View>
   </View>
@@ -161,7 +160,7 @@ exports[`App snapshot renders the loading screen 1`] = `
           ]
         }
       >
-        Appointment
+        Appointments
       </Text>
     </View>
   </View>
@@ -188,7 +187,6 @@ exports[`App snapshot renders the root without loading screen 1`] = `
       Object {
         "borderRadius": 10,
         "height": 40,
-        "marginBottom": 50,
       },
     ]
   }
@@ -262,7 +260,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           ]
         }
       >
-        ToDo
+        ToDos
       </Text>
     </View>
   </View>
@@ -329,7 +327,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
           ]
         }
       >
-        Appointment
+        Appointments
       </Text>
     </View>
   </View>

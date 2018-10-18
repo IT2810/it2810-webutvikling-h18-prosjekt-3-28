@@ -13,11 +13,8 @@ import {
   Avatar,
   Text,
 }from 'react-native-elements';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import { MonoText } from '../components/StyledText';
 import PedometerSensor from '../components/PedometerSensor';
 import CustomCheckBox from '../components/CustomCheckBox';
-import calenderItem from '../components/CalenderItem';
 import Tabs from "../components/Tabs";
 import CalenderItem from '../components/CalenderItem';
 

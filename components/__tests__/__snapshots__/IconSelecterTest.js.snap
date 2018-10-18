@@ -77,7 +77,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -143,7 +143,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -209,7 +209,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -275,7 +275,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -360,7 +360,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -426,7 +426,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -492,7 +492,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -558,7 +558,7 @@ exports[`App snapshot renders the loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -667,7 +667,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -733,7 +733,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -799,7 +799,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -865,7 +865,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -950,7 +950,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -1016,7 +1016,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -1082,7 +1082,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
@@ -1148,7 +1148,7 @@ exports[`App snapshot renders the root without loading screen 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#00aced",
+                  "color": "#323940",
                   "fontSize": 50,
                 },
                 Array [
