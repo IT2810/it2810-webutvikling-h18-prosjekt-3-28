@@ -76,7 +76,6 @@ class PedometerSensor extends React.Component{
         Pedometer.getStepCountAsync(start, end).then(
           result => {
             this.setState({ pastStepCount: result.steps });
-            this.parent.updateSteps(this.state.pastStepCount);
             console.log()
           },
           error => {
@@ -120,7 +119,6 @@ class PedometerSensor extends React.Component{
         )
       }
     }
-    
     const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -148,7 +146,6 @@ class PedometerSensor extends React.Component{
         flexDirection: 'row',
       },
       activityContainer:{
-        textAlign: 'center',
         justifyContent: 'center',
       },
       titleText1: {

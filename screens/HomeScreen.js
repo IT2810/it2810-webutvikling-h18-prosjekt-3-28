@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  AsyncStorage,
 } from 'react-native';
 import { WebBrowser, Font, LinearGradient } from 'expo';
 import {
@@ -35,25 +36,6 @@ Font.loadAsync({
 })
 
 
-const list = [
-  {
-    title: 'Clean my room',
-    checked: false,
-  },
-  {
-    title: 'Math assignment',
-    checked: false,
-  },
-  {
-    title: 'Web assignment',
-    checked: false,
-  },
-  {
-    title: 'Work',
-    checked: false,
-  }
-]
-
 const appointments = [
   {
     title: 'Meeting',
@@ -68,7 +50,7 @@ const appointments = [
     
   },
   {
-    title: 'Workshop',
+    title: 'Workshop vol 1',
     time: '14:10',
     guest: 'Axel Hennie',
     
@@ -80,19 +62,19 @@ const appointments = [
     
   },
   {
-    title: 'Meeting',
+    title: 'Meeting about the future',
     time: '10:10',
     guest: 'B. Obama',
 
   },
   {
-    title: 'lunch',
+    title: 'lunch meeting',
     time: '12:10',
     guest: 'Erna Solberg',
     
   },
   {
-    title: 'Workshop',
+    title: 'Workshop vol 2',
     time: '14:10',
     guest: 'Per',
     
@@ -108,21 +90,27 @@ export default class HomeScreen extends React.Component {
       activeTab: 0,
       tasks:[],
       steps: 0,
-      
     }
-    this.setTasks(list)
+
   }
 
+//  async componentWillMount(){
+//   console.log("WILLMOUNT()")
+//   await this.init()
 
+
+//   console.log("FINNISHED WILLMOUNT")
+// }
+
+// async init(){
+//   console.log("INIT START")
+//   await this.setTasks()
+//   console.log("INIT FINISHED")
+
+// }
   static navigationOptions = {
     header: null,
   };
-
-  setTasks(taskList){
-    taskList.map((item)=>(
-      this.state.tasks.push(item)
-    ))
-  }
 
    updateToDo(checked,key) {
     if(checked){
@@ -152,13 +140,18 @@ export default class HomeScreen extends React.Component {
           )
         }
     else{
-      
+      console.log("GETLIST START")
       return(
          
-          this.state.tasks.map((item,l)=>(
-            <CustomCheckBox parent = {this} key={l} text={item.title} checked={item.checked}/>
-          ))
-      )
+        this.state.tasks.map((item,l)=>(
+          <CustomCheckBox parent = {this} key={l} text={item.text} icon={item.icon} checked={item.checked}/>
+        ))
+    )
+         
+          
+        
+      console.log("GETLIST FINNISHED")
+      return null
     }
   }
 
@@ -203,10 +196,67 @@ export default class HomeScreen extends React.Component {
     }
   }
 
+  setTasks = async () => {
+    let date  = new Date()
+    console.log("SETSTASKS")
+    let value = await this.test()
+    this.setState({tasks: value})
+   console.log("FINNISHED SETTASKS, RESULT: ",this.state.tasks[0])
+  }
+
+  getFromAsync(){
+    return this._retrieveData()
+  }
+
+  test(){
+    let date  = new Date()
+    var value = this._retrieveData()
+    console.log(value[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]]) 
+    return value
+  }
+
+
+  _retrieveData = async () => {
+    console.log("RETRIVEDATA")
+
+    try {
+      console.log("RETRIVEDATA - B4 TRY")
+      var value = await AsyncStorage.getItem('todo');
+      console.log("RETRIVE DATA - TRY ", value)
+      //console.log(JSON.parse(value)[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()])
+      if (value !== null) {
+        console.log("FINISHED RETRIVING ", value)
+        return JSON.parse(value)
+      }
+     } catch (error) {
+       console.log("RETRIVEDATA FAILED")
+        console.log(error.toString())
+        return null
+     }
+  }
+
+  _storeData = async () => {
+    console.log("_storeData")
+    try {
+      console.log("try")
+      todo = getTODO()
+      todo[today] = this.state.tasks
+      await AsyncStorage.setItem('todo', todo);
+      console.log("sucsess")
+    } catch (error) {
+      console.log(error.toString())
+      // Error saving data
+    }
+  }
+
   render() {
+    this.test()
+    this.setTasks()
     return (
       <ScrollView style={styles.container}>
-          
+
+
+      
       
       <View style={styles.container}>
         <LinearGradient
@@ -223,7 +273,7 @@ export default class HomeScreen extends React.Component {
           onPress={() => console.log("Works!")}
           activeOpacity={0.7}
         />
-      </LinearGradient>
+        </LinearGradient>
 
           <View style = {styles.topContainer}>
             {this.getTaskView()}
@@ -232,6 +282,7 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.tab}>
           <Tabs parent = {this} ></Tabs>
+
             {this.getList(this.state.activeTab)}
           </View>
       </View>
@@ -360,7 +411,6 @@ const styles = StyleSheet.create({
     width:150,
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
     overflow: 'hidden',
     backgroundColor:'#fff',
   },
@@ -370,7 +420,6 @@ const styles = StyleSheet.create({
     width:160,
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign: 'center',
     overflow: 'hidden',
   },
   titleText1: {
@@ -378,9 +427,11 @@ const styles = StyleSheet.create({
   },
   titleText2: {
     fontFamily: 'SF-Pro-Display-Regular',
+    textAlign: 'center',
   },
   titleText3: {
     fontFamily: 'SF-Pro-Display-Thin',
+    textAlign: 'center',
   },
   titleText4: {
     fontFamily: 'SF-Pro-Display-Ultralight',
