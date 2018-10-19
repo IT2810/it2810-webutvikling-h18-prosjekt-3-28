@@ -45,15 +45,15 @@ export default class ToDoScreen extends React.Component {
     }];
 
     return (
-      <View style={styles.container}>
-        <ScrollView>
-
+      
+      <ScrollView>
+        <View style={styles.container}>
           <TodoTabs 
             ref={tabs => this.tabs = tabs}
           >
           </TodoTabs>
 
-          <View style={{width: 300, alignContent:"center"}}>
+          <View style={{width: 300, alignContent:"center", justifyContent:'center'}}>
             
             <Text style={[styles.titleText3, styles.h3]}>Enter your task here:</Text>
 
@@ -64,22 +64,20 @@ export default class ToDoScreen extends React.Component {
               onFocus={this._removeValidationMessage}
               value={this.state.text}
             />
-
+            <View style={{alignItems:'center', justifyContent:'center', paddingBottom:30}}>
             <Button
               title={this.state.date}
               onPress={this._showDateTimePicker} 
-              ViewComponent={require('expo').LinearGradient}
               buttonStyle={{
                 marginTop:20,
+                padding:5,
+                borderRadius:100,
+                width:200,
+                backgroundColor:"#3a7bd5",
               }}
-              linearGradientProps={{
-              start:[0, 0.25],
-              end:[0.5,1.0],
-              colors:['#3a7bd5', '#3a6073',]
-              }}
-            > 
-            </Button>
-            
+            />  
+            </View>
+        
             <View style={{marginTop:20}}>
 
               <Dropdown 
@@ -104,44 +102,29 @@ export default class ToDoScreen extends React.Component {
 
           </View>
 
-                  <View style={{opacity: this.state.messageOpacity}}>
+          <View style={{opacity: this.state.messageOpacity}}>
+          <Text style={styles.errorMessage}>
+            {this.state.errorText}
+          </Text>
 
-<Text style={styles.errorMessage}>
-  {this.state.errorText}
-</Text>
-
-</View>
-  <View style={{alignItems:'center', justifyContent:'center', paddingBottom:30}}>
-    <Button
-        title="Add to my list" 
-        onPress={() => {
-          this._prepareDataForStorage()
-          Alert.alert("Since this is a working protype, you'll have to refresh the app to show the new todo. Sorry for this 😥")
-      }}
-        ViewComponent={require('expo').LinearGradient}
-        
-        buttonStyle={{
-          padding:5,
-          borderRadius:100,
-          width:200,
-          
-
-
-        }}
-        linearGradientProps={{
-          start:[ 0.0, 0.25],
-          end:[ 0.5,1.0],
-          colors:['#ff9fa7', '#ffd9a4']
-        }}
-
-      />
-  </View>  
-</ScrollView>
-
-
-
-
-      </View>
+          </View>
+          <View style={{alignItems:'center', justifyContent:'center', paddingBottom:30}}>
+            <Button
+                title="Add to my list" 
+                onPress={() => {
+                  this._prepareDataForStorage()
+                  Alert.alert("Task added!","Since this is a working protype, you'll have to refresh the app to show the new todo. Sorry for this 😥")
+              }}
+                buttonStyle={{
+                  padding:5,
+                  borderRadius:100,
+                  width:200,
+                  backgroundColor:"#3a7bd5",
+                }}
+              />
+          </View> 
+        </View> 
+      </ScrollView>
     );
   }
 
@@ -250,7 +233,7 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "center",
     fontSize: 20,
-    marginBottom: "5%"
+    marginBottom: 10,
   },
 
   dateBtn: {
@@ -258,11 +241,7 @@ const styles = StyleSheet.create({
   },
 
   datePicker: {
-    width: "90%",
-    marginLeft: "5%",
-    height: "20%",
-    marginTop: "5%",
-    marginBottom: "5%",
+    width: 350,
     backgroundColor: "#aaaaaa",
     borderRadius: 5,
     padding: 10,
@@ -273,11 +252,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop:50,
+    padding:50,
   },
   centerContent: {
-    width:'80%',
-    marginLeft:'10%',
+    width:300,
   },
   contentContainer: {
     paddingTop: 30,
