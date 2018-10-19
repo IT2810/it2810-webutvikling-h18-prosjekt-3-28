@@ -143,7 +143,9 @@ DateTimePicker kan installeres med npm.
 
 Slik importerer man komponenten:
 
-`import DateTimePicker from 'react-native-modal-datetime-picker';`
+```Javascript
+import DateTimePicker from 'react-native-modal-datetime-picker';
+```
 
 Resten av koden er enkel samhandling mellom state og objektet. Objektet støtter både ios og android. Slik ser vår kode ut:
 ```Javascript
@@ -182,7 +184,7 @@ Det anbefales altså å mellomlagre data i et eget nivå så man slipper å gjø
 
 <a name="testing"></a>
 ## Testing
-For testing i dette prosjektet var det et krav om å bruke Jest. Jest er et rammeverk som implementerer test-støtte i javascript. Jest kommer med i prosjektet automatisk når man lager prosjektet ved å bruke expo-cli og expo init.
+For testing i dette prosjektet var det et krav om å bruke Jest. Jest er et rammeverk som implementerer test-støtte i javascript. Jest kommer med i prosjektet automatisk når man lager prosjektet ved å bruke `expo-cli`og `expo init`.
 
 Vi brukte våre egne mobiler, samt simulatorer jevnt gjennom hele prosjektet. Når vi testet appen vår gikk vi nøye og systematisk gjennom alle funksjoner i appen, i tillegg til å teste at UI fungerte som det skulle. Vi har brukt et variert utvalg av enheter fra IOS og Android. Vi brukte følgende simulatorer/mobiler: Iphone XS, Iphone X, Iphone 8, OnePlus 6(Android Pie), pluss emulatoren i Android Studio, med ulike devices og OS. Dette ga testing med et godt utvalg med skjermstørrelser, i tillegg til at vi fikk testet appen på både IOS og Android.
 
