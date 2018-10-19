@@ -1,0 +1,223 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App snapshot renders the loading screen 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "white",
+        "borderRadius": 10,
+        "marginTop": 17,
+        "padding": 10,
+        "width": 350,
+      },
+      Object {
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#40434b",
+            },
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+            },
+          ],
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Regular",
+            },
+            Object {
+              "fontSize": 35,
+            },
+          ],
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#40434b",
+            },
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+            },
+          ],
+        ]
+      }
+    >
+      w/ 
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`App snapshot renders the root without loading screen 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "white",
+        "borderRadius": 10,
+        "marginTop": 17,
+        "padding": 10,
+        "width": 350,
+      },
+      Object {
+        "flexDirection": "row",
+      },
+    ]
+  }
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#40434b",
+            },
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+            },
+          ],
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Regular",
+            },
+            Object {
+              "fontSize": 35,
+            },
+          ],
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "color": "#40434b",
+            },
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+            },
+          ],
+        ]
+      }
+    >
+      w/ 
+    </Text>
+  </View>
+</View>
+`;

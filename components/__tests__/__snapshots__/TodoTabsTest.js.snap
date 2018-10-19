@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App snapshot renders the loading screen 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 5,
+        "marginLeft": 10,
+        "marginRight": 10,
+        "marginTop": 5,
+        "overflow": "hidden",
+      },
+      Object {
+        "borderRadius": 10,
+        "height": 40,
+        "marginBottom": 50,
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomLeftRadius": 3,
+        "borderRightColor": "#bdc6cf",
+        "borderRightWidth": 0,
+        "borderTopLeftRadius": 3,
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          undefined,
+          Object {
+            "backgroundColor": "#2089dc",
+          },
+          Object {
+            "backgroundColor": "#3a7bd5",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "color": "#5e6977",
+                "fontSize": 16.25,
+                "fontWeight": "500",
+              },
+              undefined,
+              Object {
+                "color": "#fff",
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        ToDo
+      </Text>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomRightRadius": 3,
+        "borderLeftColor": "#bdc6cf",
+        "borderLeftWidth": 1,
+        "borderTopRightRadius": 3,
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          undefined,
+          false,
+          false,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "color": "#5e6977",
+                "fontSize": 16.25,
+                "fontWeight": "500",
+              },
+              undefined,
+              false,
+              false,
+            ],
+          ]
+        }
+      >
+        Appointment
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`App snapshot renders the root without loading screen 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 5,
+        "marginLeft": 10,
+        "marginRight": 10,
+        "marginTop": 5,
+        "overflow": "hidden",
+      },
+      Object {
+        "borderRadius": 10,
+        "height": 40,
+        "marginBottom": 50,
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomLeftRadius": 3,
+        "borderRightColor": "#bdc6cf",
+        "borderRightWidth": 0,
+        "borderTopLeftRadius": 3,
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          undefined,
+          Object {
+            "backgroundColor": "#2089dc",
+          },
+          Object {
+            "backgroundColor": "#3a7bd5",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "color": "#5e6977",
+                "fontSize": 16.25,
+                "fontWeight": "500",
+              },
+              undefined,
+              Object {
+                "color": "#fff",
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        ToDo
+      </Text>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomRightRadius": 3,
+        "borderLeftColor": "#bdc6cf",
+        "borderLeftWidth": 1,
+        "borderTopRightRadius": 3,
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          undefined,
+          false,
+          false,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {},
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            Array [
+              Object {
+                "color": "#5e6977",
+                "fontSize": 16.25,
+                "fontWeight": "500",
+              },
+              undefined,
+              false,
+              false,
+            ],
+          ]
+        }
+      >
+        Appointment
+      </Text>
+    </View>
+  </View>
+</View>
+`;

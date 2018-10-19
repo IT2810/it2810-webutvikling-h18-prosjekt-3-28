@@ -1,0 +1,535 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App snapshot renders the loading screen 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "marginTop": 35,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        Array [
+          Object {
+            "fontFamily": "SF-Pro-Display-Thin",
+          },
+          Object {
+            "fontSize": 30,
+          },
+          Object {
+            "textAlign": "center",
+          },
+        ],
+      ]
+    }
+  >
+    Activity 
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    />
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "borderColor": "#d6d7da",
+          "borderRadius": 10,
+          "borderWidth": 1,
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 10,
+          "marginTop": 10,
+          "overflow": "hidden",
+          "width": 350,
+        }
+      }
+    >
+      <ExponentLinearGradient
+        colors={
+          Array [
+            4282022869,
+            4282015859,
+          ]
+        }
+        endPoint={
+          Array [
+            0.5,
+            1,
+          ]
+        }
+        locations={null}
+        startPoint={
+          Array [
+            0,
+            0.25,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "borderColor": "transparent",
+              "borderRadius": 10,
+              "borderWidth": 1,
+              "height": 25,
+              "width": 175,
+            }
+          }
+          width={0}
+        />
+      </ExponentLinearGradient>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+        },
+        Object {
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+              "padding": 10,
+            },
+          ],
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      />
+        
+      0
+         |
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+              "padding": 10,
+            },
+          ],
+        ]
+      }
+    >
+       
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      />
+        
+      0
+       kcal    |
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+              "padding": 10,
+            },
+          ],
+        ]
+      }
+    >
+       
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      />
+        
+      0.00
+       km    
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`App snapshot renders the root without loading screen 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "marginTop": 35,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {},
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        Array [
+          Object {
+            "fontFamily": "SF-Pro-Display-Thin",
+          },
+          Object {
+            "fontSize": 30,
+          },
+          Object {
+            "textAlign": "center",
+          },
+        ],
+      ]
+    }
+  >
+    Activity 
+    <Text
+      accessible={true}
+      allowFontScaling={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 23,
+          },
+          undefined,
+          Object {
+            "fontFamily": "material",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+        ]
+      }
+    >
+      
+    </Text>
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "borderColor": "#d6d7da",
+          "borderRadius": 10,
+          "borderWidth": 1,
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 10,
+          "marginTop": 10,
+          "overflow": "hidden",
+          "width": 350,
+        }
+      }
+    >
+      <ExponentLinearGradient
+        colors={
+          Array [
+            4282022869,
+            4282015859,
+          ]
+        }
+        endPoint={
+          Array [
+            0.5,
+            1,
+          ]
+        }
+        locations={null}
+        startPoint={
+          Array [
+            0,
+            0.25,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "borderColor": "transparent",
+              "borderRadius": 10,
+              "borderWidth": 1,
+              "height": 25,
+              "width": 175,
+            }
+          }
+          width={0}
+        />
+      </ExponentLinearGradient>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+        },
+        Object {
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+              "padding": 10,
+            },
+          ],
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#3a7bd5",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "foundation",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+        
+      0
+         |
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+              "padding": 10,
+            },
+          ],
+        ]
+      }
+    >
+       
+      <Text
+        accessible={true}
+        allowFontScaling={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "red",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "ionicons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+        
+      0
+       kcal    |
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {},
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          Array [
+            Object {
+              "fontFamily": "SF-Pro-Display-Thin",
+            },
+            Object {
+              "fontSize": 20,
+              "padding": 10,
+            },
+          ],
+        ]
+      }
+    >
+       
+      <Text
+        accessible={true}
+        allowFontScaling={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#f9c618",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "entypo",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+        
+      0.00
+       km    
+    </Text>
+  </View>
+</View>
+`;

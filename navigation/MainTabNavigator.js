@@ -4,8 +4,9 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import AgendaScreen from '../screens/AgendaScreen';
+import ToDoScreen from '../screens/ToDoScreen';
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -18,43 +19,50 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
+          ? `ios-home${focused ? '' : '-outline'}`
+          : 'md-home'
+      }
+    />
+  ),
+};
+
+
+const ToDoStack = createStackNavigator({
+  Todos: ToDoScreen,
+});
+
+ToDoStack.navigationOptions = {
+  tabBarLabel: 'TODO',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-add-circle${focused ? '' : '-outline'}`
           : 'md-information-circle'
       }
     />
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const AgendaStack = createStackNavigator({
+  Agenda: AgendaScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+AgendaStack.navigationOptions = {
+  tabBarLabel: 'Calendar',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-    />
-  ),
-};
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+      name={Platform.OS === 'ios' ? `ios-calendar${focused ? '' : '-outline'}` : 'md-calendar'}
     />
   ),
 };
 
 export default createBottomTabNavigator({
+  AgendaStack,
   HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+  ToDoStack
+}
+
+  , {initialRouteName: 'HomeStack'});
