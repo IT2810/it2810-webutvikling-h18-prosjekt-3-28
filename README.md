@@ -124,7 +124,7 @@ data = [
 ]
 ```
 
-I render kan man gjøre som vi gjorde i vårt prosjekt..
+I render kan man gjøre som vi gjorde i vårt prosjekt. Datasettet linkes som vist i koden under.
 
 ```Javascript
 <Dropdown
