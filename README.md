@@ -8,6 +8,7 @@ Dette er en "Personal Information and Motivation Manager" app.
 * [Valg og løsninger](#losning)
 * [Valg av teknologi(Tutorials)](#tutorial)
 * [Testing](#testing)
+* [Hva vi ikke fikk gjort](#todo)
 
 <a name="verktoy"></a>
 ## Verktøy og rammeverk
@@ -62,12 +63,12 @@ eks: `
 `
 Slik kan man enkelt legge til en knapp. En fin ting med RNE er at man enkelt kan legge til innebygde variabler. Dersom man vil ha en større knapp kan man legge inn large
 eks:
-`
+```Javascript
 <Button
   large
   rightIcon={{name: 'code'}}
   title='LARGE WITH RIGHT ICON' />
-`
+```
 Her har man også lagt ved et icon på høyre side av knappen. 
 Dersom man ønsker å style komponentene gjøres dette på samme måte som med andre komponenter, man legger inn ` style={styles.myStyling} ` 
 
@@ -84,13 +85,14 @@ https://react-native-training.github.io/react-native-elements/docs/0.19.1/overvi
 ### Expo - LinearGradient
 Expo har også mange fine innebygde komponenter. Den vi har brukt mest er LinearGradient
 
+```Javascript
      <LinearGradient
          style={}
          start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
          colors={['#ff9fa7', '#ffd9a4']
          }>
      </LinearGradient>
-
+```
 Her legger man inn et start og slutt punkt (x,y - verdier), og en start og slutt farge, så lager den en gradient fargeovergang. Her har vi også merket oss at den fungere bedre og har en fyldigere fargeovergang på iOS enn android. 
 
 ### Expo - pedometer
@@ -172,7 +174,9 @@ AsyncStorage er en enkel og asynkron lagringsløsning som lagrer verdier på nø
 
 Når vi startet opp med Prosjekt 3 visste vi ingenting om React Native og heller ikke om AsyncStorage. På React Natives egen dokumentasjon står følgende: 
 
-`“It is recommended that you use an abstraction on top of AsyncStorage instead of AsyncStorage directly for anything more than light usage since it operates globally.”`
+```
+“It is recommended that you use an abstraction on top of AsyncStorage instead of AsyncStorage directly for anything more than light usage since it operates globally.”
+```
 
 Det anbefales altså å mellomlagre data i et eget nivå så man slipper å gjøre kall opp mot AsyncStorage gjevnlig. Vi leste rundt og ser for oss at Redux kunne vært en løsning som ville gjort dette prosjektet mye enklere. Vi valgte å ikke bruke Redux ettersom det ikke var et krav og vi ikke visste hvilke fordeler det ville gitt før vi var i sluttfasen av prosjektet. 
 
@@ -185,7 +189,7 @@ Vi brukte våre egne mobiler, samt simulatorer jevnt gjennom hele prosjektet. N�
 ### npm test
 Vi hadde i løpet av prosjektperioden store problemer med å få testrammeverket til å fungere. Vi fant ingen god løsning på problemet, men fikk testene til å kjøre på mac ved å endre på koden helt nederst i `node_modules/whatwg-fetch/fetch.js`
  Ved kloning av repo vil ikke dette være et problem, ettersom man får fila som er endret. Om person som tester ikke har mac, men ønsker å se testresultatene så er det lagt ved et bilde her.
-Bilde her
+![Test coverage](assets/images/coverage.png)
 
 For å teste med dekningsgrad kan man bruke følgende kommando i terminal:
 `npm test -- --coverage`
@@ -196,7 +200,8 @@ Snapshot-testing er nyttig for å sjekke at UI-ikke endrer seg uforventet. Teste
 ### Unit-testing
 Vi brukte unit-testing for å sjekke om oppførselen til funksjonene våre var som planlagt. Vi gjorde dette med så mange funksjoner som mulig gjennom prosjektet, men støtte på noen problemer. Problemene som dukket opp var testing av funksjoner som brukte state til et child-element eller data lagret i AsyncStorage. Å lage en mock for lagringen i AsyncStorage kunne vært en løsning på problemet, men vi fikk ikke dette til å fungere som ønsket.
 
-# Hva vi ikke fikk gjort
+<a name="todo"></a>
+## Hva vi ikke fikk gjort
 Det er noen mangler og bugs når det gjelder sammenheng i appen vår. Man får lagret nye todos i AsyncStorage, men det er komplisert å laste inn dette dynamisk i de andre skjermene uten å mellomlagre data. Dette gjør at man i enkelte tilfeller må restarte appen for å hente data på nytt og kjøre render på nytt. I kalenderen må man bevege på seg i komponentet for at den skal oppdateres. Planen var at man også skulle kunne legge til appointments i ToDoScreen. Dette fikk vi ikke tid til. Vi ønsket også å knytte skrittelleren opp imot et personlig mål, noe vi ikke fikk tid til å implementere.
 
 Kalenderen er ganske treg til å laste inn elementer. Dette fikk vi ikke tid til å fikse, men vi ser for oss at Redux også ville hjulpet oss med dette problemet.
