@@ -79,7 +79,7 @@ export default class HomeScreen extends React.Component {
     this.state = {
       numFinishedTasks: 0,
       activeTab: 0,
-      tasks: [0],
+      tasks: [],
       steps: 0,
     }
   }
