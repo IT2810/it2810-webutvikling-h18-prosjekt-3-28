@@ -3,15 +3,11 @@ import { Expo,Font, Pedometer, LinearGradient } from "expo";
 import { 
   StyleSheet, 
   View,
-  
 } from "react-native";
 import {
-  CheckBox,
-  ButtonGroup,
   Text,
-  Icon
 } from 'react-native-elements';
-import { Ionicons, FontAwesome, Foundation, Entypo, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, Foundation, Entypo, MaterialIcons } from '@expo/vector-icons';
 
 
 Font.loadAsync({
@@ -26,6 +22,9 @@ Font.loadAsync({
   'SF-Pro-Display-Ultralight':require('../assets/fonts/SF-Pro-Display-Ultralight.otf'),
 })
 
+
+//Most of this code is made by Expo
+//https://docs.expo.io/versions/latest/sdk/pedometer
 class PedometerSensor extends React.Component{
     constructor(props){
         super(props)
@@ -118,6 +117,7 @@ class PedometerSensor extends React.Component{
         )
       }
     }
+
     const styles = StyleSheet.create({
       container: {
         flex: 1,

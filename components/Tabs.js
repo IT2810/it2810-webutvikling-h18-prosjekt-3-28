@@ -9,17 +9,15 @@ import {
   Alert,
 } from 'react-native';
 import {
-  Checkbox, 
   ButtonGroup,
-  Text,
-  Icon
 } from 'react-native-elements';
 
 import{
   LinearGradient,
 } from 'expo';
 
-
+//This code is made by React-native-elements
+//https://react-native-training.github.io/react-native-elements/docs/button_group.html
 class Tabs extends React.Component{
 
   constructor (props) {
@@ -48,8 +46,6 @@ class Tabs extends React.Component{
       containerStyle={{height: 40, borderRadius:10, }}
       selectedButtonStyle={{backgroundColor: '#3a7bd5'}}
     />
-    
-
     )
   }
 
