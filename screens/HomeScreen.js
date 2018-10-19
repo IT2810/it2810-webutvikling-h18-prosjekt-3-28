@@ -8,7 +8,7 @@ import {
   View,
   AsyncStorage,
 } from 'react-native';
-import { WebBrowser, Font, LinearGradient } from 'expo';
+import { Font, LinearGradient } from 'expo';
 import {
   Avatar,
   Text,
@@ -37,25 +37,13 @@ const appointments = [
   {
     title: 'Meeting',
     time: '10:10',
-    guest: 'Rolv Wesenlund',
+    guest: 'Gunnar Bovim',
 
   },
   {
-    title: 'lunch',
-    time: '12:10',
+    title: 'Lunch',
+    time: '11:10',
     guest: 'Brad Pitt',
-    
-  },
-  {
-    title: 'Workshop vol 1',
-    time: '14:10',
-    guest: 'Axel Hennie',
-    
-  },
-  {
-    title: 'Dinner',
-    time: '18:10',
-    guest: 'The Rock',
     
   },
   {
@@ -76,6 +64,12 @@ const appointments = [
     guest: 'Per',
     
   },
+  {
+    title: 'Dinner',
+    time: '18:10',
+    guest: 'The Rock',
+    
+  },
 ]
 
 
@@ -88,28 +82,20 @@ export default class HomeScreen extends React.Component {
       tasks: [],
       steps: 0,
     }
-
   }
 
-async componentWillMount(){
-  let value = this.setTasks()
-}
+  //This function will be called before render
+  async componentWillMount(){
+    let value = this.setTasks()
+  }
 
-
-//   console.log("FINNISHED WILLMOUNT")
-// }
-
-// async init(){
-//   console.log("INIT START")
-//   await this.setTasks()
-//   console.log("INIT FINISHED")
-
-// }
   static navigationOptions = {
     header: null,
   };
 
-   updateToDo(checked,key) {
+  //Updates todo
+  //Called from Customcheckbox
+  updateToDo(checked,key) {
     if(checked){
       this.setState({numFinishedTasks: this.state.numFinishedTasks+1})
       this.state.tasks[key%(this.state.tasks.length)].checked = true
@@ -119,15 +105,17 @@ async componentWillMount(){
       this.setState({numFinishedTasks: this.state.numFinishedTasks-1})
       this.state.tasks[key%(this.state.tasks.length)].checked = false
       this._storeData()
-
-      
     }
   }
 
+  //Updates which tab is active todo/appointments
   updateActiveTab(index){
       this.setState({activeTab: index})
   }
 
+  //Returns a list of elements
+  //Either alist of appointments today (calenderItems)
+  //or a list of the tasks today (cutsomCheckbox)
   getList(activeTab){
     if(activeTab){
       return( 
@@ -135,31 +123,24 @@ async componentWillMount(){
           {
             appointments.map((item, i) => (
               <CalenderItem key={item.title} text={item.title} time={item.time} location={item.guest}></CalenderItem>
-            ))
-          }
+            ))}
           </View>
           )
         }
     else{
-      console.log("GETLIST START")
       return(
-         
         this.state.tasks.map((item,l)=>(
           <CustomCheckBox parent = {this} key={l} text={item.text} icon={item.icon} checked={item.checked}/>
         ))
-    )
-         
-          
-        
-      console.log("GETLIST FINNISHED")
-      return null
+      )
     }
   }
 
+  //Returns a view of what day it is.
+  //Used on the top of the homescreen
   getDate(){
     let week = ["Sunday","Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", ]
     let date = new Date()
-    console.log(week[date.getDay()-1], date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear())
     return <View style={styles.header}>
             <Text style={[styles.titleText1, styles.headerText, styles.h1]}>
             {week[date.getDay()]}
@@ -170,6 +151,8 @@ async componentWillMount(){
           </View>
   }
 
+  //Returns a counter of how many tasks the user has done
+  //and how many tasks is left
   getTaskView(){
     if(this.state.numFinishedTasks/this.state.tasks.length == 1){
       return <View style={{alignItems:'center'}}>
@@ -197,61 +180,48 @@ async componentWillMount(){
     }
   }
 
-
-
+  //Called in willmount() 
+  //sets tasks to state loaded from async
+  //Retrives tasks thats should be done today
    async setTasks(){
     let date  = new Date()
     var value = await this._retrieveData()
     value = value[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]]
-    console.log("TEST", value)
     this.setState({tasks:value})
     let counter = 0 
     value.forEach(element => {
       if(element.checked == true){
         counter ++
-        console.log(counter)
       }
     });
     this.setState({numFinishedTasks: counter})
-
     return value[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]]
   }
 
-
+  //Retrives data from async
   _retrieveData = async () => {
-    console.log("RETRIVEDATA")
     try {
-      console.log("RETRIVEDATA - B4 TRY")
       var value = await AsyncStorage.getItem('todo');
-      console.log("RETRIVE DATA - TRY ", value)
-      //console.log(JSON.parse(value)[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()])
       if (value !== null) {
-        console.log("FINISHED RETRIVING ", value)
         return JSON.parse(value)
       }
      } catch (error) {
-       console.log("RETRIVEDATA FAILED")
-        console.log(error.toString())
         return null
      }
   }
 
+  // Stores data to async
+  // Called every time the user updates a task
   _storeData = async () => {
-    console.log("_storeData")
     try {
-      console.log("try")
       let date = new Date()
       let saved = await this._retrieveData()
-      console.log(saved)
 
       saved[[date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()]] = this.state.tasks
-      console.log(saved)
 
       await AsyncStorage.setItem('todo', JSON.stringify(saved));
-      console.log("sucsess")
     } catch (error) {
       console.log(error.toString())
-      // Error saving data
     }
   }
 
@@ -262,8 +232,8 @@ async componentWillMount(){
         <LinearGradient
         style={styles.headerGradient}
         colors={['#3a7bd5', '#3a6073']}
-        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}}>
-        
+        start={{x: 0.0, y: 0.25}} end={{x: 0.5, y: 1.0}
+        }>
           {this.getDate()}
           <Avatar
           style={styles.headerAvatar}
@@ -292,7 +262,7 @@ async componentWillMount(){
 }
 
 
-
+// Styling
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -323,79 +293,9 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     paddingTop: 10,
-    
   },
   col:{
     flexDirection: 'row',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-    fontFamily: 'OpenSans-Light',
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
   },
   navigationFilename: {
     marginTop: 5,
