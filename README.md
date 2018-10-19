@@ -20,6 +20,9 @@ Dette er en "Personal Information and Motivation Manager" app. Vi har hat proble
 ## Installering
 1. Klon repoet til ønsket sted på maskinen din
 2. Naviger til mappen i terminal/kommandolinje og kjør `npm install` 
+
+For å få appen til å fungere på iphone må man inn i `node_modules/whatwg-fetch/fetch.js` etter å ha installert prosjektet. Der må man bytte ut `typeof self !== 'undefined' ? self : this` med `global` i nederste linje. Dette må også gjøres for at testingen skal fungere med `npm test`.
+
 3. Kjør deretter `expo start` for å åpne opp metro bundler i nettleseren. Her kan man åpne appen på mobil ved å scanne QR-koden, eller kjøre appen på ulike simulatorer lokalt
 
 <a name="losning"></a>
