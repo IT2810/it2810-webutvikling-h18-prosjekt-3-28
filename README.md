@@ -1,6 +1,6 @@
 # Dokumentasjon for prosjekt 3 - PIMM
 ### it2810-webutvikling-h18-prosjekt-3-28
-Dette er en "Personal Information and Motivation Manager" app.
+Dette er en "Personal Information and Motivation Manager" app. Vi har hat problemer med å kjøre appen. For å få appen til å fungere på iphone må man inn i `node_modules/whatwg-fetch/fetch.js` etter å ha installert prosjektet. Der må man bytte ut `typeof self !== 'undefined' ? self : this` med `global` i nederste linje.
 
 ## Innholdsfortegnelse
 * [Verktøy og rammeverk](#verktoy)
@@ -190,7 +190,7 @@ Vi brukte våre egne mobiler, samt simulatorer jevnt gjennom hele prosjektet. N�
 
 ### npm test
 Vi hadde i løpet av prosjektperioden store problemer med å få testrammeverket til å fungere. Vi fant ingen god løsning på problemet, men fikk testene til å kjøre på mac ved å endre på koden helt nederst i `node_modules/whatwg-fetch/fetch.js`
- Ved kloning av repo vil ikke dette være et problem, ettersom man får fila som er endret. Om person som tester ikke har mac, men ønsker å se testresultatene så er det lagt ved et bilde her.
+ Ved kloning av repo kommer dette til å være et problem, ettersom man får fila uendret. For å fikse dette må man endre `typeof self !== 'undefined' ? self : this` til `global`. Om person som tester ikke har mac, men ønsker å se testresultatene så er det lagt ved et bilde her.
 ![Test coverage](assets/images/coverage.png)
 
 For å teste med dekningsgrad kan man bruke følgende kommando i terminal:
