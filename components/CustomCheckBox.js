@@ -1,21 +1,13 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,
-  Alert,
 } from 'react-native';
 import {
-  Checkbox, 
-  ButtonGroup,
   Text,
   Icon
 } from 'react-native-elements';
-
-import{
+import {
   LinearGradient,
 } from 'expo';
 
@@ -33,12 +25,10 @@ class CustomCheckBox extends React.Component{
         checked: props.checked,
         parent: props.parent,
       }
-      
     }
 
 
     componentDidMount(){
-      
       if(this.state.checked){
         this.setState({checkIcon: "check-circle"});
       }else{
@@ -56,7 +46,6 @@ class CustomCheckBox extends React.Component{
         this.setState({checked: true})
         this.props.parent.updateToDo(true,this.state.key);
       }
-
     }
     
     getCheckIcon(){
@@ -64,10 +53,8 @@ class CustomCheckBox extends React.Component{
     }
 
     render () {
-      
 
       return (
-        
         <TouchableOpacity style={styles.element} 
           onPress={() => {
           //Alert.alert('You tapped the button!' + this.state.checkIcon);
@@ -82,6 +69,7 @@ class CustomCheckBox extends React.Component{
       )
     }
   }
+
     const styles = StyleSheet.create({
       element: {
         flex: 1,

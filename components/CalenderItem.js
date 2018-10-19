@@ -1,18 +1,10 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
-  TouchableOpacity,
   View,
-  Alert,
 } from 'react-native';
 import {
-  Checkbox, 
-  ButtonGroup,
   Text,
-  Icon
 } from 'react-native-elements';
 
 import{
@@ -32,8 +24,6 @@ class CalenderItem extends React.Component{
     
 
     render () {
-      
-    
       return (
         <View style={[styles.item,styles.col]}>
             <View>
@@ -45,6 +35,8 @@ class CalenderItem extends React.Component{
       )
     }
   }
+
+  
     const styles = StyleSheet.create({
         item: {
             backgroundColor: 'white',

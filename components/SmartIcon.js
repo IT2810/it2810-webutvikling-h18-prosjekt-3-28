@@ -10,7 +10,7 @@ import {
 //Had to add this to load font and icons
 Expo.Font.loadAsync({
   'Material Icons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
-  //'FontAwesome': require("expo/vector-icons/FontAwesome")
+  'MaterialIcons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
 })
 
 import{
