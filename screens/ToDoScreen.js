@@ -212,13 +212,13 @@ export default class ToDoScreen extends React.Component {
   _storeData = async (key,date,text,friend,icon) => {
     try {
       const value = await AsyncStorage.getItem(key);
-      var current = JSON.parse(value)
-      if (current != null) {
-        if(!(typeof current[date] == "object")){
-          current[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
+      var currentData = JSON.parse(value)
+      if (currentData != null) {
+        if(!(typeof currentData[date] == "object")){
+          currentData[date] = [{"text": text, "friend": friend,"icon": icon, "checked": false}]
         }
         else{
-          current[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
+          currentData[date].push({"text": text, "friend": friend,"icon": icon, "checked": false})
         }
         await AsyncStorage.setItem(key, JSON.stringify(currentData));
       }
