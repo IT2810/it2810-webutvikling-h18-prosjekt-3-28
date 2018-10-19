@@ -101,32 +101,37 @@ Siden dette er et Expo prosjekt følges begge komponentene med i prosjektet og t
 
 ### Dropdown
 https://www.npmjs.com/package/react-native-material-dropdown 
+
 `npm install --save react-native-material-dropdown`
 
 I prosjektet ble dropdown brukt for å hente ut hvilken person du skulle sette opp todo/appointment med. Denne komponenten er veldig enkel å bruke. Komponenten hentes med en enkel import.
 
-`import { Dropdown } from 'react-native-material-dropdown';`
+```Javascript
+import { Dropdown } from 'react-native-material-dropdown';
+```
 
 Deretter trenger du et datasett på et gitt format.
 
-`data = [
-{
-item: value, 
-item2: value, 
-item3: value
-}
-]`
+```Javascript
+data = [
+  {
+  item: value, 
+  item2: value, 
+  item3: value
+  }
+]
+```
 
 I render kan man gjøre som vi gjorde i vårt prosjekt..
 
-`
+```Javascript
 <Dropdown
                data={data}
                ref = {dropdown => this.dropdown = dropdown}
                label='I will do this with:'
              >
 </Dropdown>
-`
+```
 
 ### DateTimePicker
 https://www.npmjs.com/package/react-native-modal-datetime-picker
@@ -139,14 +144,15 @@ Slik importerer man komponenten:
 `import DateTimePicker from 'react-native-modal-datetime-picker';`
 
 Resten av koden er enkel samhandling mellom state og objektet. Objektet støtter både ios og android. Slik ser vår kode ut:
-```render(){
-return(
-    <DateTimePicker
-             isVisible={this.state.isDateTimePickerVisible}
-             onConfirm={this._handleDatePicked}
-             onCancel={this._hideDateTimePicker}
-           />
-)
+```Javascript
+render(){
+  return(
+      <DateTimePicker
+              isVisible={this.state.isDateTimePickerVisible}
+              onConfirm={this._handleDatePicked}
+              onCancel={this._hideDateTimePicker}
+            />
+  )
 }
 _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
 _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
@@ -189,3 +195,9 @@ Snapshot-testing er nyttig for å sjekke at UI-ikke endrer seg uforventet. Teste
 
 ### Unit-testing
 Vi brukte unit-testing for å sjekke om oppførselen til funksjonene våre var som planlagt. Vi gjorde dette med så mange funksjoner som mulig gjennom prosjektet, men støtte på noen problemer. Problemene som dukket opp var testing av funksjoner som brukte state til et child-element eller data lagret i AsyncStorage. Å lage en mock for lagringen i AsyncStorage kunne vært en løsning på problemet, men vi fikk ikke dette til å fungere som ønsket.
+
+# Hva vi ikke fikk gjort
+Det er noen mangler og bugs når det gjelder sammenheng i appen vår. Man får lagret nye todos i AsyncStorage, men det er komplisert å laste inn dette dynamisk i de andre skjermene uten å mellomlagre data. Dette gjør at man i enkelte tilfeller må restarte appen for å hente data på nytt og kjøre render på nytt. I kalenderen må man bevege på seg i komponentet for at den skal oppdateres. Planen var at man også skulle kunne legge til appointments i ToDoScreen. Dette fikk vi ikke tid til. Vi ønsket også å knytte skrittelleren opp imot et personlig mål, noe vi ikke fikk tid til å implementere.
+
+Kalenderen er ganske treg til å laste inn elementer. Dette fikk vi ikke tid til å fikse, men vi ser for oss at Redux også ville hjulpet oss med dette problemet.
+
