@@ -79,7 +79,7 @@ export default class HomeScreen extends React.Component {
     this.state = {
       numFinishedTasks: 0,
       activeTab: 0,
-      tasks: [],
+      tasks: [0],
       steps: 0,
     }
   }
@@ -87,6 +87,11 @@ export default class HomeScreen extends React.Component {
   //This function will be called before render
   async componentWillMount(){
     let value = this.setTasks()
+    this.state._isMounted = true
+  }
+
+  componentWillUnmount() {
+    this.state._isMounted=false
   }
 
   static navigationOptions = {
