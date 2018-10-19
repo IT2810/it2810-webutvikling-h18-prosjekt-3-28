@@ -169,7 +169,8 @@ _handleDatePicked = (date) => {
 ```
 
 ### TodoTabs
-TodoTabs er en enkel modifikasjon fra Tabs. Du kan lese om Tabs under Tutorial Homescreen.
+TodoTabs (og tabs.js) er en enkel modifikasjon av Tabs komponenten fra React Native Elements. For mer om react native elements les om "tutorials Homescreen". 
+Kilde koden er funnet fra: https://react-native-training.github.io/react-native-elements/docs/button_group.html 
 
 ### IconSelector
 Dette er et komponent som er implementert fra bunnen av. Komponentet består av to grupper med fire SmartIcons(vanlige icons med innlagt bakgrunnsfarge). Det kan se komplisert ut, måten vi sender informasjon ned til SmartIcon og opp til ToDoScreen, men det er i grunn bare enkle states som endres onPress.
