@@ -2,6 +2,14 @@
 ### it2810-webutvikling-h18-prosjekt-3-28
 Dette er en "Personal Information and Motivation Manager" app. Vi har hat problemer med å kjøre appen. For å få appen til å fungere på iphone må man inn i `node_modules/whatwg-fetch/fetch.js` etter å ha installert prosjektet. Der må man bytte ut `typeof self !== 'undefined' ? self : this` med `global` i nederste linje. Dette må også gjøres for at testingen skal fungere med `npm test`.
 
+ 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 
+ 
+Har fått tilbakemelding fra peergrade at folk har problem med installasjon. Vi har dessverre ingen løsning på problemet, men her er en demonstrasjon av en fungerende applikasjon:
+[link](https://drive.google.com/file/d/1LeyrJRGn7mFjlwKchQOYRBH0epSEHKGK/view?usp=sharing)  
+
+🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨  🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 
+
+
 ## Innholdsfortegnelse
 * [Verktøy og rammeverk](#verktoy)
 * [Installering](#install)
